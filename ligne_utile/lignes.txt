@@ -1,0 +1,71 @@
+npm install  
+# Installe toutes les dépendances listées dans le fichier package.json.
+
+npm install express  
+# Installe le framework Express.js pour créer des applications web et API en Node.js.
+
+npm install -g nodemon  
+# Installe Nodemon globalement pour surveiller les modifications des fichiers et redémarrer automatiquement le serveur Node.js.
+
+npm install --save-dev typescript @types/express @types/node ts-node-dev  
+# Installe TypeScript et les types nécessaires pour Express et Node.js, ainsi que ts-node-dev pour exécuter du TypeScript en développement.
+
+npx tsc --init
+#Fichier tsconfig.json
+
+npm start  
+# Démarre l'application en exécutant la commande définie dans le script "start" du fichier package.json.
+
+npm install sequelize pg pg-hstore
+#sequelize et postgres
+
+npm install --save-dev @types/sequelize @types/pg
+#typescript sequelize postgres
+
+npm install dotenv  
+# Installe dotenv pour charger les variables d'environnement à partir d'un fichier `.env`.
+
+npm install --save-dev @types/dotenv  
+# Installe les types TypeScript pour dotenv afin d'améliorer l'autocomplétion et la vérification de types.
+
+npm install express bcryptjs jsonwebtoken cookie-parser  
+# Installe Express ainsi que bcryptjs (pour le hachage des mots de passe), jsonwebtoken (pour l'authentification JWT) et cookie-parser (pour gérer les cookies).
+
+npm i --save-dev @types/bcrypt @types/bcryptjs @types/jsonwebtoken @types/cookie-parser  
+# Installe les types TypeScript pour bcrypt, bcryptjs, jsonwebtoken et cookie-parser, utiles pour le développement en TypeScript.
+
+npm install swagger-ui swagger-jsdoc swagger-ui-express
+npm install --save-dev @types/swagger-ui-express @types/swagger-jsdoc
+#Si documentation avec swagger
+
+npm install cors
+npm i --save-dev @types/cors
+#Sécu cors pour requete api
+
+npm install joi
+#protection injection avec joi
+
+npm install express-mongo-sanitize
+#protection injection mongo sanitize
+
+npm install helmet
+#protection info headers
+
+npm install express-rate-limit
+npm install --save-dev @types/express-rate-limit
+#limite requete login
+
+npx npm-check-updates -u
+#verifier les versions des dépendances et les mettres a jour
+
+npm audit
+#Vérifie la fiabilité des dépendances
+
+docker-compose up --build  
+# Démarre les services définis dans le fichier `docker-compose.yml` en reconstruisant les images si nécessaire.
+
+docker system prune -a  
+# Supprime tous les conteneurs, images et volumes inutilisés pour libérer de l'espace disque.
+
+npx tsc
+#dist
