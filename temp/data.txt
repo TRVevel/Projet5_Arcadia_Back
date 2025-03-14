@@ -1,0 +1,79 @@
+INSERT INTO users (first_name, surname, email, role, hashedpassword, "createdAt", "updatedAt") VALUES
+('Alice', 'Dupont', 'alice.dupont@example.com', 'Admin', 'hashedpass1', NOW(), NOW()),
+('Bob', 'Martin', 'bob.martin@example.com', 'Employee', 'hashedpass2', NOW(), NOW()),
+('Charlie', 'Dubois', 'charlie.dubois@example.com', 'Storekeeper', 'hashedpass3', NOW(), NOW()),
+('David', 'Leroy', 'david.leroy@example.com', 'Admin', 'hashedpass4', NOW(), NOW()),
+('Eve', 'Morel', 'eve.morel@example.com', 'Employee', 'hashedpass5', NOW(), NOW()),
+('François', 'Lambert', 'francois.lambert@example.com', 'Storekeeper', 'hashedpass6', NOW(), NOW()),
+('Gabrielle', 'Rousseau', 'gabrielle.rousseau@example.com', 'Employee', 'hashedpass7', NOW(), NOW()),
+('Hugo', 'Fournier', 'hugo.fournier@example.com', 'Admin', 'hashedpass8', NOW(), NOW()),
+('Isabelle', 'Girard', 'isabelle.girard@example.com', 'Storekeeper', 'hashedpass9', NOW(), NOW()),
+('Jean', 'Bertrand', 'jean.bertrand@example.com', 'Employee', 'hashedpass10', NOW(), NOW()),
+('Karim', 'Moreau', 'karim.moreau@example.com', 'Admin', 'hashedpass11', NOW(), NOW()),
+('Laura', 'Garcia', 'laura.garcia@example.com', 'Employee', 'hashedpass12', NOW(), NOW()),
+('Maxime', 'Henry', 'maxime.henry@example.com', 'Storekeeper', 'hashedpass13', NOW(), NOW()),
+('Nina', 'Leclerc', 'nina.leclerc@example.com', 'Admin', 'hashedpass14', NOW(), NOW()),
+('Olivier', 'Dumont', 'olivier.dumont@example.com', 'Employee', 'hashedpass15', NOW(), NOW()),
+('Pauline', 'Andre', 'pauline.andre@example.com', 'Storekeeper', 'hashedpass16', NOW(), NOW()),
+('Quentin', 'Benoit', 'quentin.benoit@example.com', 'Admin', 'hashedpass17', NOW(), NOW()),
+('Romain', 'Rey', 'romain.rey@example.com', 'Employee', 'hashedpass18', NOW(), NOW()),
+('Sophie', 'Gonzalez', 'sophie.gonzalez@example.com', 'Storekeeper', 'hashedpass19', NOW(), NOW()),
+('Thomas', 'Meunier', 'thomas.meunier@example.com', 'Admin', 'hashedpass20', NOW(), NOW()),
+('Ursule', 'Marchand', 'ursule.marchand@example.com', 'Employee', 'hashedpass21', NOW(), NOW()),
+('Valentin', 'Faure', 'valentin.faure@example.com', 'Storekeeper', 'hashedpass22', NOW(), NOW()),
+('Wendy', 'Perrin', 'wendy.perrin@example.com', 'Admin', 'hashedpass23', NOW(), NOW()),
+('Xavier', 'Dupuis', 'xavier.dupuis@example.com', 'Employee', 'hashedpass24', NOW(), NOW()),
+('Yasmine', 'Blanc', 'yasmine.blanc@example.com', 'Storekeeper', 'hashedpass25', NOW(), NOW()),
+('Zacharie', 'Renaud', 'zacharie.renaud@example.com', 'Admin', 'hashedpass26', NOW(), NOW()),
+('Amandine', 'Vidal', 'amandine.vidal@example.com', 'Employee', 'hashedpass27', NOW(), NOW()),
+('Bastien', 'Lejeune', 'bastien.lejeune@example.com', 'Storekeeper', 'hashedpass28', NOW(), NOW()),
+('Clémence', 'Denis', 'clemence.denis@example.com', 'Admin', 'hashedpass29', NOW(), NOW()),
+('Damien', 'Gillet', 'damien.gillet@example.com', 'Employee', 'hashedpass30', NOW(), NOW()),
+('Élodie', 'Navarro', 'elodie.navarro@example.com', 'Storekeeper', 'hashedpass31', NOW(), NOW()),
+('Fabien', 'Morin', 'fabien.morin@example.com', 'Admin', 'hashedpass32', NOW(), NOW()),
+('Géraldine', 'Perrot', 'geraldine.perrot@example.com', 'Employee', 'hashedpass33', NOW(), NOW()),
+('Hélène', 'Rodriguez', 'helene.rodriguez@example.com', 'Storekeeper', 'hashedpass34', NOW(), NOW()),
+('Igor', 'Bernard', 'igor.bernard@example.com', 'Admin', 'hashedpass35', NOW(), NOW()),
+('Juliette', 'Michel', 'juliette.michel@example.com', 'Employee', 'hashedpass36', NOW(), NOW()),
+('Kevin', 'Aubert', 'kevin.aubert@example.com', 'Storekeeper', 'hashedpass37', NOW(), NOW()),
+('Léa', 'Fernandez', 'lea.fernandez@example.com', 'Admin', 'hashedpass38', NOW(), NOW()),
+('Matthieu', 'Richard', 'matthieu.richard@example.com', 'Employee', 'hashedpass39', NOW(), NOW()),
+('Nicolas', 'Giraud', 'nicolas.giraud@example.com', 'Storekeeper', 'hashedpass40', NOW(), NOW());
+
+
+INSERT INTO game_platforms (game_id, platform_id, compatible_devices) VALUES
+-- PlayStation
+(1, 1, ARRAY['PS5']), -- The Last Warrior uniquement sur PS5
+(3, 1, ARRAY['PS4', 'PS5']), -- Cyber Rebellion sur PS4 et PS5
+(5, 1, ARRAY['PS4']), -- Zombie Outbreak uniquement sur PS4
+(7, 1, ARRAY['PS5']), -- Fantasy Legends uniquement sur PS5
+(9, 1, ARRAY['PS4', 'PS5']), -- Lost in Time sur PS4 et PS5
+(12, 1, ARRAY['PS5']), -- Dark Sorcery uniquement sur PS5
+(14, 1, ARRAY['PS4']), -- Pixel Adventure uniquement sur PS4
+(17, 1, ARRAY['PS4', 'PS5']), -- Galactic Empire sur PS4 et PS5
+(20, 1, ARRAY['PS5']), -- Speed Drifters uniquement sur PS5
+(22, 1, ARRAY['PS4']), -- Heroic Quest uniquement sur PS4
+
+-- Xbox
+(2, 2, ARRAY['Xbox One', 'Xbox Series X']), -- Space Odyssey sur Xbox One et Series X
+(4, 2, ARRAY['Xbox Series X']), -- Mystic Quest uniquement sur Xbox Series X
+(6, 2, ARRAY['Xbox One']), -- Super Kart Racing uniquement sur Xbox One
+(8, 2, ARRAY['Xbox One', 'Xbox Series X']), -- Battle Royale X sur Xbox One et Series X
+(11, 2, ARRAY['Xbox Series X']), -- Medieval Lords uniquement sur Xbox Series X
+(13, 2, ARRAY['Xbox One']), -- Robo Wars uniquement sur Xbox One
+(16, 2, ARRAY['Xbox One', 'Xbox Series X']), -- Ghost Hunters sur Xbox One et Series X
+(19, 2, ARRAY['Xbox Series X']), -- Farm Simulator uniquement sur Xbox Series X
+(23, 2, ARRAY['Xbox One']), -- Magic Tournament uniquement sur Xbox One
+(25, 2, ARRAY['Xbox Series X']), -- Soccer Stars uniquement sur Xbox Series X
+
+-- PC
+(1, 3, ARRAY['Windows', 'Linux']), -- The Last Warrior sur Windows et Linux
+(2, 3, ARRAY['Windows']), -- Space Odyssey uniquement sur Windows
+(5, 3, ARRAY['Windows', 'MacOS']), -- Zombie Outbreak sur Windows et MacOS
+(7, 3, ARRAY['Windows', 'Linux', 'MacOS']), -- Fantasy Legends sur toutes les plateformes PC
+(10, 3, ARRAY['Windows']), -- Alien Invasion uniquement sur Windows
+(12, 3, ARRAY['Linux', 'MacOS']), -- Dark Sorcery sur Linux et MacOS
+(14, 3, ARRAY['Windows', 'Linux']), -- Pixel Adventure sur Windows et Linux
+(17, 3, ARRAY['Windows']), -- Galactic Empire uniquement sur Windows
+(20, 3, ARRAY['Windows', 'Linux', 'MacOS']), -- Speed Drifters sur toutes les plateformes PC
+(24, 3, ARRAY['Windows', 'MacOS']); -- Wild West Duel sur Windows et MacOS
