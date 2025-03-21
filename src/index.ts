@@ -5,6 +5,11 @@ import { syncDatabase } from './models/syncModels';
 import swaggerDocs from './config/swagger';
 import swaggerUi from 'swagger-ui-express'
 import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
+import customerRoutes from "./routes/customerRoutes";
+import gameRoutes from "./routes/gameRoutes";
+import platformRoutes from "./routes/platformRoutes";
+import orderRoutes from "./routes/orderRoutes";
 //Création d'un serveur Express
 const app = express();
 dotenv.config();
@@ -17,6 +22,11 @@ app.use(express.json());
 testConnection().then(() => syncDatabase());
 //Définition des routes
 app.use('/api/auth', authRoutes);
+app.use('/api', userRoutes);
+app.use('/api', customerRoutes);
+app.use('/api', gameRoutes);
+app.use('/api', platformRoutes);
+app.use('/api', orderRoutes);
 //app.listen indique au serveur d'écouter les requêtes HTTP arrivant sur le
 //port indiqué
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));

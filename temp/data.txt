@@ -77,3 +77,28 @@ INSERT INTO game_platforms (game_id, platform_id, compatible_devices) VALUES
 (17, 3, ARRAY['Windows']), -- Galactic Empire uniquement sur Windows
 (20, 3, ARRAY['Windows', 'Linux', 'MacOS']), -- Speed Drifters sur toutes les plateformes PC
 (24, 3, ARRAY['Windows', 'MacOS']); -- Wild West Duel sur Windows et MacOS
+
+
+INSERT INTO games (title, description, genre, sub_genres, pegi, sensitive_content, release_date, price, stock, "createdAt", "updatedAt")
+VALUES
+  ('Tireur d''élite', 'Un jeu de tir intense', 'Shooter', '{"Histoire", "Gore"}', 18, '{"Violence"}', '2025-03-21', 49.99, 10, NOW(), NOW()),
+  ('RPG Aventure', 'Un RPG d''aventure fantastique', 'RPG', '{"Fantasy", "Aventure"}', 16, '{"Violence", "Bad Language"}', '2025-06-12', 39.99, 15, NOW(), NOW()),
+  ('Course de voitures', 'Des courses à couper le souffle', 'Racing', '{"Simulation"}', 12, '{"Violence"}', '2025-07-30', 29.99, 20, NOW(), NOW()),
+  ('Survie Extrême', 'Survivre dans un monde apocalyptique', 'Survival', '{"Horreur"}', 18, '{"Violence", "Drugs"}', '2025-08-01', 59.99, 25, NOW(), NOW()),
+  ('Puzzle Magique', 'Résolvez des énigmes magiques', 'Puzzle', '{"Casse-tête", "Fantastique"}', 3, '{"Bad Language"}', '2025-09-15', 9.99, 30, NOW(), NOW()),
+  ('Chasseur de fantômes', 'Capturez des fantômes dans cette aventure', 'Action', '{"Horreur"}', 16, '{"Violence"}', '2025-10-05', 19.99, 40, NOW(), NOW()),
+  ('Bataille Royale', 'Un jeu de bataille royale multijoueur', 'Shooter', '{"Compétitif"}', 16, '{"Violence", "Gambling"}', '2025-11-01', 29.99, 50, NOW(), NOW()),
+  ('Simulateur de vol', 'Simulez des vols aériens réalistes', 'Simulation', '{"Avion"}', 12, '{"Violence"}', '2025-12-11', 69.99, 15, NOW(), NOW()),
+  ('Héros Médiéval', 'Combattez pour sauver le royaume', 'RPG', '{"Médiéval", "Aventure"}', 7, '{"Violence"}', '2025-12-15', 39.99, 35, NOW(), NOW()),
+  ('Combat de robots', 'Affrontez des robots dans des arènes futuristes', 'Action', '{"Science-fiction"}', 18, '{"Violence"}', '2026-01-01', 49.99, 40, NOW(), NOW()),
+  ('Farming Sim', 'Gérez votre propre ferme', 'Simulation', '{"Agriculture"}', 3, '{"Bad Language"}', '2026-02-10', 19.99, 45, NOW(), NOW()),
+  ('Exploration spatiale', 'Explorez l''univers en vaisseau spatial', 'Aventure', '{"Science-fiction"}', 12, '{"Violence"}', '2026-03-05', 59.99, 12, NOW(), NOW()),
+  ('Survie Zombie', 'Survivez dans un monde infesté de zombies', 'Survival', '{"Horreur"}', 18, '{"Violence"}', '2026-03-25', 39.99, 25, NOW(), NOW()),
+  ('Jeu de gestion', 'Gérez votre propre entreprise', 'Simulation', '{"Gestion"}', 7, '{"Bad Language"}', '2026-04-01', 24.99, 60, NOW(), NOW()),
+  ('Course futuriste', 'Des courses futuristes avec des véhicules high-tech', 'Racing', '{"Sci-Fi"}', 16, '{"Violence"}', '2026-05-05', 49.99, 10, NOW(), NOW()),
+  ('Jeu de cartes', 'Collectionnez et combattez avec des cartes', 'Stratégie', '{"Cartes"}', 3, '{"Bad Language"}', '2026-06-15', 9.99, 50, NOW(), NOW()),
+  ('Simulation de vie', 'Vivez une vie virtuelle', 'Simulation', '{"Vie"}', 7, '{"Bad Language"}', '2026-07-25', 39.99, 20, NOW(), NOW()),
+  ('Jeu d''horreur', 'Vivez une expérience d''horreur intense', 'Horreur', '{"Psychologique"}', 18, '{"Violence", "Sexual Content"}', '2026-08-15', 59.99, 30, NOW(), NOW()),
+  ('Jeu de stratégie', 'Développez votre empire dans ce jeu de stratégie', 'Stratégie', '{"Empire", "Gestion"}', 12, '{"Violence"}', '2026-09-01', 34.99, 20, NOW(), NOW()),
+  ('Simulation de train', 'Gérez un réseau ferroviaire', 'Simulation', '{"Transport"}', 3, '{"Bad Language"}', '2026-10-05', 19.99, 15, NOW(), NOW()),
+  ('Survie dans l''espace', 'Survivez dans l''espace avec des ressources limitées', 'Survival', '{"Science-fiction"}', 16, '{"Violence"}', '2026-11-11', 49.99, 20, NOW(), NOW());

@@ -8,6 +8,7 @@ interface CustomerAttributes {
     surname: string;
     email: string;
     hashedpassword: string;
+    order_history?: number[];
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -18,6 +19,7 @@ class Customer extends Model<CustomerAttributes> implements CustomerAttributes {
     public surname!: string;
     public email!: string;
     public hashedpassword!: string;
+    public order_history!: number[];
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -48,6 +50,10 @@ Customer.init(
         hashedpassword: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        order_history: {
+            type: DataTypes.ARRAY(DataTypes.INTEGER),
+            defaultValue: [],
         },
     },
     {
