@@ -1,11 +1,9 @@
 import { Request, Response } from 'express';
-import User from '../models/user.model';
 import { hashPassword, verifyPassword } from '../utils/pwdUtils';
 import { generateToken } from '../utils/JWTUtils';
-export async function register(req:Request, res:Response) {
-import { hashPassword, verifyPassword } from '../utils/pwdUtils';
-import { generateToken } from '../utils/JWTUtils';
+import Customer from '../models/customer.model';
 import User from '../models/user.model';
+
 
 export async function customerRegister(req:Request, res:Response) {
     try {
@@ -77,7 +75,6 @@ export async function userRegister(req:Request, res:Response) {
     res.status(201).json(user);
     }catch (err:any) {
         if(err.code===11000){
-            res.status(400).json({message: 'Cet utilisateur existe déjà !'});
             res.status(400).json({message: 'Cet user existe déjà !'});
             return 
         }
@@ -85,7 +82,6 @@ export async function userRegister(req:Request, res:Response) {
     }
 }
 
-export async function login(req:Request, res:Response) {
 export async function userLogin(req:Request, res:Response) {
     const{email,password} = req.body;
     try {
@@ -96,7 +92,6 @@ export async function userLogin(req:Request, res:Response) {
 
         const user= await  User.findOne({ where: { email } });
         if(!user){
-            res.status(404).json({message: 'Utilisateur non trouvé'});
             res.status(404).json({message: 'User non trouvé'});
             return;
         }

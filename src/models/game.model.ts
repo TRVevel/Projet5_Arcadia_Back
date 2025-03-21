@@ -12,8 +12,6 @@ interface GameAttributes {
     pegi: 3 | 7 | 12 | 16 | 18;
     sensitive_content: string;
     price: number;
-    realease_date: Date;
-    platforms_data: object;
     release_date: Date;
     image?: string;
     stock: number;
@@ -30,8 +28,6 @@ class Game extends Model<GameAttributes> implements GameAttributes {
     public pegi!: 3 | 7 | 12 | 16 | 18;
     public sensitive_content!: string;
     public price!: number;
-    public realease_date!: Date;
-    public platforms_data!: object; 
     public release_date!: Date;
     public image!: string;
     public stock!: number;
@@ -60,7 +56,6 @@ Game.init(
         },
         sub_genres: {
             type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false,
             allowNull: true,
             validate: {
                 // Vérifie que chaque élément du tableau correspond à un motif précis (ici une chaîne avec des lettres et chiffres)
@@ -81,23 +76,6 @@ Game.init(
         sensitive_content: {
             type: DataTypes.STRING,
         },
-        price: {
-            type: DataTypes.DECIMAL,
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: true,  // Cette valeur peut être facultative
-            validate: {
-                isValidContent(value: string[]) { // Spécifiez explicitement que value est un tableau de chaînes de caractères
-                    if (value && Array.isArray(value)) {
-                        // Valide chaque élément du tableau
-                        for (const item of value) {
-                            if (!['Violence', 'Sexual Content', 'Drugs', 'Gambling', 'Bad Language'].includes(item)) {
-                                throw new Error(`${item} n'est pas un contenu sensible valide`);
-                            }
-                        }
-                    }
-                },
-            },
-        },
         
         price: {
             type: DataTypes.DECIMAL,
@@ -107,12 +85,6 @@ Game.init(
                 min: 0,
             },
         },
-        realease_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        platforms_data: {
-            type: DataTypes.JSONB, 
         release_date: {
             type: DataTypes.DATE,
             allowNull: false,
