@@ -1,6 +1,9 @@
+import express from 'express';
+import dotenv from 'dotenv';
 import { testConnection } from './config/database';
 import { syncDatabase } from './models/syncModels';
 import swaggerDocs from './config/swagger';
+import swaggerUi from 'swagger-ui-express';
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import customerRoutes from "./routes/customerRoutes";

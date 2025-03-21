@@ -34,15 +34,19 @@ export async function addGame(req: Request, res: Response) {
             sub_genres,
             pegi,
             sensitive_content,
-            release_date,
+            release_date, // Stocke les données binaires directement
             price,
             stock
         });
-        res.status(201).json({message:'Ajout du jeux:', data: newGame});
+        res.status(201).json({message:'Ajout du game:', data: newGame});
 
     }catch(error:any){
-        console.error('Erreur lors de la création du jeu : ', error);
-        res.status(500).json({ message: 'Erreur lors de la création du jeu' });
+        if(error.code===11000){
+            res.status(400).json({message: 'Ce game est déjà ajouter!'});
+            return 
+        }
+        console.error("Erreur lors de la l'ajout du game : ", error);
+        res.status(500).json({ message: "Erreur lors de la l'ajout du game" });
     }
 }
 

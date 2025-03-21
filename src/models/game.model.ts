@@ -90,9 +90,9 @@ Game.init(
             allowNull: false,
         },
         image: {
-            allowNull: true,
-            type: DataTypes.STRING,
-        },
+            type: DataTypes.STRING, // Utilisation correcte de BLOB
+            allowNull: true
+          },
         stock: {
             type: DataTypes.INTEGER,
             allowNull: false,
