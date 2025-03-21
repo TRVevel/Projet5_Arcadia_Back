@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 // Assure-toi d'ajouter 'dialect' explicitement ici
-const sequelize = new Sequelize('Arcadia_DB', 'postgres', 'root', {
+const sequelize = new Sequelize (process .env.DATABASE_URL as string, {
   host: 'localhost',  // Remplace par l'adresse de ton serveur si nécessaire
   dialect: 'postgres', // Spécifie le dialecte (postgres pour PostgreSQL)
   logging: false, // Pour désactiver les logs SQL, tu peux le mettre à true pour voir les requêtes

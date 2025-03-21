@@ -1,10 +1,9 @@
-import { Request } from "express";
-import { ObjectSchema } from "joi";
+import Joi from 'joi';
 
-export function validateSchema(req: Request, schema: ObjectSchema) {
-const { error, value } = schema.validate(req.body);
-if (error) {
-throw error;
-}
-return value;
-}
+export const validateSchema = (data: any, schema: Joi.ObjectSchema) => {
+  const { error, value } = schema.validate(data, { abortEarly: false });
+  if (error) {
+    throw new Error(`Validation failed: ${error.details.map(d => d.message).join(', ')}`);
+  }
+  return value; // Retourne les données validées
+};

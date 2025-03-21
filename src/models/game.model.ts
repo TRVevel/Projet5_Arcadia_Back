@@ -14,6 +14,11 @@ interface GameAttributes {
     price: number;
     realease_date: Date;
     platforms_data: object;
+    release_date: Date;
+    image?: string;
+    stock: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 class Game extends Model<GameAttributes> implements GameAttributes {
@@ -27,6 +32,11 @@ class Game extends Model<GameAttributes> implements GameAttributes {
     public price!: number;
     public realease_date!: Date;
     public platforms_data!: object; 
+    public release_date!: Date;
+    public image!: string;
+    public stock!: number;
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
 }
 
 Game.init(
@@ -51,6 +61,15 @@ Game.init(
         sub_genres: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
+            allowNull: true,
+            validate: {
+                // Vérifie que chaque élément du tableau correspond à un motif précis (ici une chaîne avec des lettres et chiffres)
+                isArrayValid(value: string[]) {
+                    if (!value.every(item => /^[A-Za-z0-9& ]+$/.test(item))) {
+                        throw new Error("Each sub_genre must contain only letters, numbers, and '&'");
+                    }
+                },
+            },
         },
         pegi: {
             type: DataTypes.INTEGER,
@@ -64,6 +83,25 @@ Game.init(
         },
         price: {
             type: DataTypes.DECIMAL,
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true,  // Cette valeur peut être facultative
+            validate: {
+                isValidContent(value: string[]) { // Spécifiez explicitement que value est un tableau de chaînes de caractères
+                    if (value && Array.isArray(value)) {
+                        // Valide chaque élément du tableau
+                        for (const item of value) {
+                            if (!['Violence', 'Sexual Content', 'Drugs', 'Gambling', 'Bad Language'].includes(item)) {
+                                throw new Error(`${item} n'est pas un contenu sensible valide`);
+                            }
+                        }
+                    }
+                },
+            },
+        },
+        
+        price: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
             validate: {
                 isDecimal: true,
                 min: 0,
@@ -75,6 +113,21 @@ Game.init(
         },
         platforms_data: {
             type: DataTypes.JSONB, 
+        release_date: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+        image: {
+            allowNull: true,
+            type: DataTypes.STRING,
+        },
+        stock: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                isInt: true,
+                min: 0,
+            },
         },
     },
     {
