@@ -102,3 +102,7 @@ VALUES
   ('Jeu de stratégie', 'Développez votre empire dans ce jeu de stratégie', 'Stratégie', '{"Empire", "Gestion"}', 12, '{"Violence"}', '2026-09-01', 34.99, 20, NOW(), NOW()),
   ('Simulation de train', 'Gérez un réseau ferroviaire', 'Simulation', '{"Transport"}', 3, '{"Bad Language"}', '2026-10-05', 19.99, 15, NOW(), NOW()),
   ('Survie dans l''espace', 'Survivez dans l''espace avec des ressources limitées', 'Survival', '{"Science-fiction"}', 16, '{"Violence"}', '2026-11-11', 49.99, 20, NOW(), NOW());
+
+
+INSERT INTO platforms (name, devices) VALUES ('PlayStation', ARRAY['PS4', 'PS5']);
+INSERT INTO platforms (name, devices) VALUES ('Xbox', ARRAY['Xbox One', 'Xbox Series X']);

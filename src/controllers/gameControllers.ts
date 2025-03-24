@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Game from "../models/game.model";
 import { validateSchema } from "../utils/joiUtils";
+import Game from "../models/game.model";
 import { gameSchema } from "../JoiValidators/gamesValidators";
 export async function getAllGames(req: Request, res: Response) {
     try {

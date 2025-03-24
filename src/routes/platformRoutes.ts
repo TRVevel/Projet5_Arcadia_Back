@@ -1,8 +1,10 @@
 import express from "express";
-import { addPlatform, getAllPlatform } from "../controllers/platformControllers";
+import { addDeviceFromPlatform, addPlatform, getAllPlatform, modifyPlatform, removeDeviceFromPlatform } from "../controllers/platformControllers";
 
 const router = express.Router();
 router.get("/platforms", getAllPlatform);
 router.post("/platforms", addPlatform);
-
+router.put("/platforms/:id", modifyPlatform);
+router.put("/platforms/:id/devices/add", addDeviceFromPlatform);
+router.put("/platforms/:id/devices/remove", removeDeviceFromPlatform);
 export default router;

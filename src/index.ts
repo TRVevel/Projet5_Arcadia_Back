@@ -9,6 +9,7 @@ import userRoutes from "./routes/userRoutes";
 import customerRoutes from "./routes/customerRoutes";
 import gameRoutes from "./routes/gameRoutes";
 import platformRoutes from "./routes/platformRoutes";
+import game_platformsRoutes from "./routes/game_platformsRoutes";
 import orderRoutes from "./routes/orderRoutes";
 
 //Création d'un serveur Express
@@ -27,6 +28,7 @@ app.use('/api', userRoutes);
 app.use('/api', customerRoutes);
 app.use('/api', gameRoutes);
 app.use('/api', platformRoutes);
+app.use('/api', game_platformsRoutes);
 app.use('/api', orderRoutes);
 //app.listen indique au serveur d'écouter les requêtes HTTP arrivant sur le
 //port indiqué
