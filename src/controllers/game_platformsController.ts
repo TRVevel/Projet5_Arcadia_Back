@@ -13,16 +13,19 @@ export async function getAllGamesPlatforms(req: Request, res: Response) {
 }
 
 export async function addGamePlatform(req: Request, res: Response) {
-    const {game_id, platform_id, compatible_devices} = await req.body;
+    const {game_id, platform_id, compatible_device, release_date, price, stock  } = await req.body;
     try{
-        if (!game_id || !platform_id || !compatible_devices|| compatible_devices.length === 0) {
+        if (!game_id || !platform_id || !compatible_device|| compatible_device.length === 0 || !release_date || !price || !stock) {
             res.status(400).json({ message: 'Tous les champs sont requis' });
             return;
         }
         const newGamePlatorm = await GamePlatform.create({
             game_id,
             platform_id,
-            compatible_devices
+            compatible_device,
+            release_date, // Stocke les données binaires directement
+            price,
+            stock
         });
         res.status(201).json({message:'Ajout de la platform au game:', data: newGamePlatorm});
 
@@ -37,7 +40,7 @@ export async function addGamePlatform(req: Request, res: Response) {
 }
 
 export async function deleteGamePlatform(req: Request, res: Response) {
-    const {id} = await req.params;
+    const {id} = await req.params; //faux
     try{
         if ( !id) {
             res.status(400).json({ message: 'Vous devez taper un id de relation game_platform' });
@@ -55,55 +58,4 @@ export async function deleteGamePlatform(req: Request, res: Response) {
         res.status(500).json({ message: "Erreur lors de la modification de la platform "});
     }
 }
-export async function addDeviceFromGamePlatform(req: Request, res: Response){
-    const {compatible_devices} = req.body;
-    const {id} = req.params;
-    try{
-        if(!compatible_devices){
-            res.status(400).json({message: 'Le device à ajouter est requis'});
-            return;
-        }
-        const gamePlatform = await GamePlatform.findByPk(id);
-        if(!gamePlatform){
-            res.status(404).json({message: 'Platform non trouvée'});
-            return;
-        }
-        // Créer une nouvelle copie du tableau avec l'ajout du nouvel élément
-        const updatedDevices = [...gamePlatform.compatible_devices, compatible_devices];
 
-        // Mettre à jour directement la base de données
-        await gamePlatform.update({ compatible_devices: updatedDevices });
-        res.status(200).json({message: 'Device ajouté avec succès', data: gamePlatform});
-    }catch(error:any){
-        console.error("Erreur lors de l'ajout du device à la platform : ", error);
-        res.status(500).json({ message: "Erreur lors de l'ajout du device à la platform "});
-    }
-}
-
-export async function removeDeviceFromGamePlatform(req: Request, res: Response) {
-    const { compatible_devices } = req.body;
-    const { id } = req.params;
-
-    try {
-        if (!compatible_devices) {
-            res.status(400).json({ message: "Le device à retirer est requis" });
-            return ;
-        }
-
-        const gamePlatform = await GamePlatform.findByPk(id);
-        if (!gamePlatform) {
-            res.status(404).json({ message: "Platform non trouvée" });
-            return ;
-        }
-
-        // Filtrer la liste des devices pour retirer celui spécifié
-        gamePlatform.compatible_devices = gamePlatform.compatible_devices.filter((d: string) => d !== compatible_devices);
-
-        await gamePlatform.save(); // Sauvegarder les changements
-
-        res.status(200).json({ message: "Device retiré avec succès", data: gamePlatform });
-    } catch (error: any) {
-        console.error("Erreur lors de la suppression du device de la platform : ", error);
-        res.status(500).json({ message: "Erreur lors de la suppression du device de la platform" });
-    }
-}

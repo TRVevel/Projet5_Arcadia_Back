@@ -11,10 +11,6 @@ interface GameAttributes {
     sub_genres: string[];
     pegi: 3 | 7 | 12 | 16 | 18;
     sensitive_content: string;
-    price: number;
-    release_date: Date;
-    image?: string;
-    stock: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -27,10 +23,6 @@ class Game extends Model<GameAttributes> implements GameAttributes {
     public sub_genres!: string[];
     public pegi!: 3 | 7 | 12 | 16 | 18;
     public sensitive_content!: string;
-    public price!: number;
-    public release_date!: Date;
-    public image!: string;
-    public stock!: number;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -77,35 +69,18 @@ Game.init(
             type: DataTypes.STRING,
         },
         
-        price: {
-            type: DataTypes.DECIMAL,
-            allowNull: false,
-            validate: {
-                isDecimal: true,
-                min: 0,
-            },
-        },
-        release_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        image: {
-            type: DataTypes.STRING, // Utilisation correcte de BLOB
-            allowNull: true
-          },
-        stock: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isInt: true,
-                min: 0,
-            },
-        },
+        
     },
     {
         sequelize,
         tableName: "games",
         timestamps: true, // Ajoute createdAt & updatedAt
+        indexes: [
+            {
+                unique: true,
+                fields: ["title", "description", "genre"], // ✅ Empêche uniquement les doublons exacts
+            },
+        ],
     }
 );
 

@@ -2,14 +2,16 @@ import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 import Customer from "./customer.model";
 import Game from "./game.model";
+import GamePlatform from "./game_platforms.model";
 
 
 // Définition des attributs d'un commande
 interface OrderAttributes {
     id?: number;
     customer_id: number;
-    game_id: number;
+    game_platform_id: number;
     quantity: number;
+    price?: number;
     status: boolean;
     createdAt?: Date;
     updatedAt?: Date;
@@ -18,8 +20,9 @@ interface OrderAttributes {
 class Order extends Model<OrderAttributes> implements OrderAttributes {
     public id!: number;
     public customer_id!: number;
-    public game_id!: number;
+    public game_platform_id!: number;
     public quantity!: number;
+    public price!: number;
     public status!: boolean;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -40,7 +43,7 @@ Order.init(
                 key: "id",
             },
         },
-        game_id: {
+        game_platform_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -51,6 +54,14 @@ Order.init(
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        price: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+            validate: {
+                isDecimal: true,
+                min: 0,
+            },
         },
         status:{
             type: DataTypes.BOOLEAN,
@@ -68,8 +79,8 @@ Order.init(
 Customer.hasMany(Order, { foreignKey: "customer_id" });
 Order.belongsTo(Customer, { foreignKey: "customer_id" });
 
-Game.hasMany(Order, { foreignKey: "game_id" });
-Order.belongsTo(Game, { foreignKey: "game_id" });
+GamePlatform.hasMany(Order, { foreignKey: "game_id" });
+Order.belongsTo(GamePlatform, { foreignKey: "game_id" });
 
 
 export default Order;

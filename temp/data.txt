@@ -8,14 +8,14 @@ INSERT INTO users (first_name, surname, email, role, hashedpassword, "createdAt"
 ('Gabrielle', 'Rousseau', 'gabrielle.rousseau@example.com', 'Employee', 'hashedpass7', NOW(), NOW()),
 ('Hugo', 'Fournier', 'hugo.fournier@example.com', 'Admin', 'hashedpass8', NOW(), NOW()),
 ('Isabelle', 'Girard', 'isabelle.girard@example.com', 'Storekeeper', 'hashedpass9', NOW(), NOW()),
-('Jean', 'Bertrand', 'jean.bertrand@example.com', 'Employee', 'hashedpass10', NOW(), NOW()),
-('Karim', 'Moreau', 'karim.moreau@example.com', 'Admin', 'hashedpass11', NOW(), NOW()),
+('Jean', 'Bonbeur', 'jean.bertrand@example.com', 'Employee', 'hashedpass10', NOW(), NOW()),
+('Karim', 'Du91', 'karim.moreau@example.com', 'Admin', 'hashedpass11', NOW(), NOW()),
 ('Laura', 'Garcia', 'laura.garcia@example.com', 'Employee', 'hashedpass12', NOW(), NOW()),
 ('Maxime', 'Henry', 'maxime.henry@example.com', 'Storekeeper', 'hashedpass13', NOW(), NOW()),
 ('Nina', 'Leclerc', 'nina.leclerc@example.com', 'Admin', 'hashedpass14', NOW(), NOW()),
 ('Olivier', 'Dumont', 'olivier.dumont@example.com', 'Employee', 'hashedpass15', NOW(), NOW()),
 ('Pauline', 'Andre', 'pauline.andre@example.com', 'Storekeeper', 'hashedpass16', NOW(), NOW()),
-('Quentin', 'Benoit', 'quentin.benoit@example.com', 'Admin', 'hashedpass17', NOW(), NOW()),
+('Quentin', 'Mofé', 'quentin.benoit@example.com', 'Admin', 'hashedpass17', NOW(), NOW()),
 ('Romain', 'Rey', 'romain.rey@example.com', 'Employee', 'hashedpass18', NOW(), NOW()),
 ('Sophie', 'Gonzalez', 'sophie.gonzalez@example.com', 'Storekeeper', 'hashedpass19', NOW(), NOW()),
 ('Thomas', 'Meunier', 'thomas.meunier@example.com', 'Admin', 'hashedpass20', NOW(), NOW()),
@@ -25,7 +25,7 @@ INSERT INTO users (first_name, surname, email, role, hashedpassword, "createdAt"
 ('Xavier', 'Dupuis', 'xavier.dupuis@example.com', 'Employee', 'hashedpass24', NOW(), NOW()),
 ('Yasmine', 'Blanc', 'yasmine.blanc@example.com', 'Storekeeper', 'hashedpass25', NOW(), NOW()),
 ('Zacharie', 'Renaud', 'zacharie.renaud@example.com', 'Admin', 'hashedpass26', NOW(), NOW()),
-('Amandine', 'Vidal', 'amandine.vidal@example.com', 'Employee', 'hashedpass27', NOW(), NOW()),
+('Amandine', 'Vittel', 'amandine.vidal@example.com', 'Employee', 'hashedpass27', NOW(), NOW()),
 ('Bastien', 'Lejeune', 'bastien.lejeune@example.com', 'Storekeeper', 'hashedpass28', NOW(), NOW()),
 ('Clémence', 'Denis', 'clemence.denis@example.com', 'Admin', 'hashedpass29', NOW(), NOW()),
 ('Damien', 'Gillet', 'damien.gillet@example.com', 'Employee', 'hashedpass30', NOW(), NOW()),
@@ -35,74 +35,76 @@ INSERT INTO users (first_name, surname, email, role, hashedpassword, "createdAt"
 ('Hélène', 'Rodriguez', 'helene.rodriguez@example.com', 'Storekeeper', 'hashedpass34', NOW(), NOW()),
 ('Igor', 'Bernard', 'igor.bernard@example.com', 'Admin', 'hashedpass35', NOW(), NOW()),
 ('Juliette', 'Michel', 'juliette.michel@example.com', 'Employee', 'hashedpass36', NOW(), NOW()),
-('Kevin', 'Aubert', 'kevin.aubert@example.com', 'Storekeeper', 'hashedpass37', NOW(), NOW()),
+('Kevin', 'LeThug', 'kevin.aubert@example.com', 'Storekeeper', 'hashedpass37', NOW(), NOW()),
 ('Léa', 'Fernandez', 'lea.fernandez@example.com', 'Admin', 'hashedpass38', NOW(), NOW()),
 ('Matthieu', 'Richard', 'matthieu.richard@example.com', 'Employee', 'hashedpass39', NOW(), NOW()),
 ('Nicolas', 'Giraud', 'nicolas.giraud@example.com', 'Storekeeper', 'hashedpass40', NOW(), NOW());
 
 
-INSERT INTO game_platforms (game_id, platform_id, compatible_devices) VALUES
--- PlayStation
-(1, 1, ARRAY['PS5']), -- The Last Warrior uniquement sur PS5
-(3, 1, ARRAY['PS4', 'PS5']), -- Cyber Rebellion sur PS4 et PS5
-(5, 1, ARRAY['PS4']), -- Zombie Outbreak uniquement sur PS4
-(7, 1, ARRAY['PS5']), -- Fantasy Legends uniquement sur PS5
-(9, 1, ARRAY['PS4', 'PS5']), -- Lost in Time sur PS4 et PS5
-(12, 1, ARRAY['PS5']), -- Dark Sorcery uniquement sur PS5
-(14, 1, ARRAY['PS4']), -- Pixel Adventure uniquement sur PS4
-(17, 1, ARRAY['PS4', 'PS5']), -- Galactic Empire sur PS4 et PS5
-(20, 1, ARRAY['PS5']), -- Speed Drifters uniquement sur PS5
-(22, 1, ARRAY['PS4']), -- Heroic Quest uniquement sur PS4
-
--- Xbox
-(2, 2, ARRAY['Xbox One', 'Xbox Series X']), -- Space Odyssey sur Xbox One et Series X
-(4, 2, ARRAY['Xbox Series X']), -- Mystic Quest uniquement sur Xbox Series X
-(6, 2, ARRAY['Xbox One']), -- Super Kart Racing uniquement sur Xbox One
-(8, 2, ARRAY['Xbox One', 'Xbox Series X']), -- Battle Royale X sur Xbox One et Series X
-(11, 2, ARRAY['Xbox Series X']), -- Medieval Lords uniquement sur Xbox Series X
-(13, 2, ARRAY['Xbox One']), -- Robo Wars uniquement sur Xbox One
-(16, 2, ARRAY['Xbox One', 'Xbox Series X']), -- Ghost Hunters sur Xbox One et Series X
-(19, 2, ARRAY['Xbox Series X']), -- Farm Simulator uniquement sur Xbox Series X
-(23, 2, ARRAY['Xbox One']), -- Magic Tournament uniquement sur Xbox One
-(25, 2, ARRAY['Xbox Series X']), -- Soccer Stars uniquement sur Xbox Series X
-
--- PC
-(1, 3, ARRAY['Windows', 'Linux']), -- The Last Warrior sur Windows et Linux
-(2, 3, ARRAY['Windows']), -- Space Odyssey uniquement sur Windows
-(5, 3, ARRAY['Windows', 'MacOS']), -- Zombie Outbreak sur Windows et MacOS
-(7, 3, ARRAY['Windows', 'Linux', 'MacOS']), -- Fantasy Legends sur toutes les plateformes PC
-(10, 3, ARRAY['Windows']), -- Alien Invasion uniquement sur Windows
-(12, 3, ARRAY['Linux', 'MacOS']), -- Dark Sorcery sur Linux et MacOS
-(14, 3, ARRAY['Windows', 'Linux']), -- Pixel Adventure sur Windows et Linux
-(17, 3, ARRAY['Windows']), -- Galactic Empire uniquement sur Windows
-(20, 3, ARRAY['Windows', 'Linux', 'MacOS']), -- Speed Drifters sur toutes les plateformes PC
-(24, 3, ARRAY['Windows', 'MacOS']); -- Wild West Duel sur Windows et MacOS
-
-
-INSERT INTO games (title, description, genre, sub_genres, pegi, sensitive_content, release_date, price, stock, "createdAt", "updatedAt")
+INSERT INTO games (title, description, genre, sub_genres, pegi, sensitive_content, "createdAt", "updatedAt")
 VALUES
-  ('Tireur d''élite', 'Un jeu de tir intense', 'Shooter', '{"Histoire", "Gore"}', 18, '{"Violence"}', '2025-03-21', 49.99, 10, NOW(), NOW()),
-  ('RPG Aventure', 'Un RPG d''aventure fantastique', 'RPG', '{"Fantasy", "Aventure"}', 16, '{"Violence", "Bad Language"}', '2025-06-12', 39.99, 15, NOW(), NOW()),
-  ('Course de voitures', 'Des courses à couper le souffle', 'Racing', '{"Simulation"}', 12, '{"Violence"}', '2025-07-30', 29.99, 20, NOW(), NOW()),
-  ('Survie Extrême', 'Survivre dans un monde apocalyptique', 'Survival', '{"Horreur"}', 18, '{"Violence", "Drugs"}', '2025-08-01', 59.99, 25, NOW(), NOW()),
-  ('Puzzle Magique', 'Résolvez des énigmes magiques', 'Puzzle', '{"Casse-tête", "Fantastique"}', 3, '{"Bad Language"}', '2025-09-15', 9.99, 30, NOW(), NOW()),
-  ('Chasseur de fantômes', 'Capturez des fantômes dans cette aventure', 'Action', '{"Horreur"}', 16, '{"Violence"}', '2025-10-05', 19.99, 40, NOW(), NOW()),
-  ('Bataille Royale', 'Un jeu de bataille royale multijoueur', 'Shooter', '{"Compétitif"}', 16, '{"Violence", "Gambling"}', '2025-11-01', 29.99, 50, NOW(), NOW()),
-  ('Simulateur de vol', 'Simulez des vols aériens réalistes', 'Simulation', '{"Avion"}', 12, '{"Violence"}', '2025-12-11', 69.99, 15, NOW(), NOW()),
-  ('Héros Médiéval', 'Combattez pour sauver le royaume', 'RPG', '{"Médiéval", "Aventure"}', 7, '{"Violence"}', '2025-12-15', 39.99, 35, NOW(), NOW()),
-  ('Combat de robots', 'Affrontez des robots dans des arènes futuristes', 'Action', '{"Science-fiction"}', 18, '{"Violence"}', '2026-01-01', 49.99, 40, NOW(), NOW()),
-  ('Farming Sim', 'Gérez votre propre ferme', 'Simulation', '{"Agriculture"}', 3, '{"Bad Language"}', '2026-02-10', 19.99, 45, NOW(), NOW()),
-  ('Exploration spatiale', 'Explorez l''univers en vaisseau spatial', 'Aventure', '{"Science-fiction"}', 12, '{"Violence"}', '2026-03-05', 59.99, 12, NOW(), NOW()),
-  ('Survie Zombie', 'Survivez dans un monde infesté de zombies', 'Survival', '{"Horreur"}', 18, '{"Violence"}', '2026-03-25', 39.99, 25, NOW(), NOW()),
-  ('Jeu de gestion', 'Gérez votre propre entreprise', 'Simulation', '{"Gestion"}', 7, '{"Bad Language"}', '2026-04-01', 24.99, 60, NOW(), NOW()),
-  ('Course futuriste', 'Des courses futuristes avec des véhicules high-tech', 'Racing', '{"Sci-Fi"}', 16, '{"Violence"}', '2026-05-05', 49.99, 10, NOW(), NOW()),
-  ('Jeu de cartes', 'Collectionnez et combattez avec des cartes', 'Stratégie', '{"Cartes"}', 3, '{"Bad Language"}', '2026-06-15', 9.99, 50, NOW(), NOW()),
-  ('Simulation de vie', 'Vivez une vie virtuelle', 'Simulation', '{"Vie"}', 7, '{"Bad Language"}', '2026-07-25', 39.99, 20, NOW(), NOW()),
-  ('Jeu d''horreur', 'Vivez une expérience d''horreur intense', 'Horreur', '{"Psychologique"}', 18, '{"Violence", "Sexual Content"}', '2026-08-15', 59.99, 30, NOW(), NOW()),
-  ('Jeu de stratégie', 'Développez votre empire dans ce jeu de stratégie', 'Stratégie', '{"Empire", "Gestion"}', 12, '{"Violence"}', '2026-09-01', 34.99, 20, NOW(), NOW()),
-  ('Simulation de train', 'Gérez un réseau ferroviaire', 'Simulation', '{"Transport"}', 3, '{"Bad Language"}', '2026-10-05', 19.99, 15, NOW(), NOW()),
-  ('Survie dans l''espace', 'Survivez dans l''espace avec des ressources limitées', 'Survival', '{"Science-fiction"}', 16, '{"Violence"}', '2026-11-11', 49.99, 20, NOW(), NOW());
+  ('Tireur d''élite', 'Un jeu de tir intense', 'Shooter', '{"Histoire", "Gore"}', 18, '{"Violence"}', NOW(), NOW()),
+  ('RPG Aventure', 'Un RPG d''aventure fantastique', 'RPG', '{"Fantasy", "Aventure"}', 16, '{"Violence", "Bad Language"}', NOW(), NOW()),
+  ('Course de voitures', 'Des courses à couper le souffle', 'Racing', '{"Simulation"}', 12, '{"Violence"}', NOW(), NOW()),
+  ('Survie Extrême', 'Survivre dans un monde apocalyptique', 'Survival', '{"Horreur"}', 18, '{"Violence", "Drugs"}', NOW(), NOW()),
+  ('Puzzle Magique', 'Résolvez des énigmes magiques', 'Puzzle', '{"Casse-tête", "Fantastique"}', 3, '{"Bad Language"}', NOW(), NOW()),
+  ('Chasseur de fantômes', 'Capturez des fantômes dans cette aventure', 'Action', '{"Horreur"}', 16, '{"Violence"}', NOW(), NOW()),
+  ('Bataille Royale', 'Un jeu de bataille royale multijoueur', 'Shooter', '{"Compétitif"}', 16, '{"Violence", "Gambling"}', NOW(), NOW()),
+  ('Simulateur de vol', 'Simulez des vols aériens réalistes', 'Simulation', '{"Avion"}', 12, '{"Violence"}', NOW(), NOW()),
+  ('Héros Médiéval', 'Combattez pour sauver le royaume', 'RPG', '{"Médiéval", "Aventure"}', 7, '{"Violence"}', NOW(), NOW()),
+  ('Combat de robots', 'Affrontez des robots dans des arènes futuristes', 'Action', '{"Science-fiction"}', 18, '{"Violence"}', NOW(), NOW()),
+  ('Farming Sim', 'Gérez votre propre ferme', 'Simulation', '{"Agriculture"}', 3, '{"Bad Language"}', NOW(), NOW()),
+  ('Exploration spatiale', 'Explorez l''univers en vaisseau spatial', 'Aventure', '{"Science-fiction"}', 12, '{"Violence"}', NOW(), NOW()),
+  ('Survie Zombie', 'Survivez dans un monde infesté de zombies', 'Survival', '{"Horreur"}', 18, '{"Violence"}', NOW(), NOW()),
+  ('Jeu de gestion', 'Gérez votre propre entreprise', 'Simulation', '{"Gestion"}', 7, '{"Bad Language"}', NOW(), NOW()),
+  ('Course futuriste', 'Des courses futuristes avec des véhicules high-tech', 'Racing', '{"Sci-Fi"}', 16, '{"Violence"}', NOW(), NOW()),
+  ('Jeu de cartes', 'Collectionnez et combattez avec des cartes', 'Stratégie', '{"Cartes"}', 3, '{"Bad Language"}', NOW(), NOW()),
+  ('Simulation de vie', 'Vivez une vie virtuelle', 'Simulation', '{"Vie"}', 7, '{"Bad Language"}', NOW(), NOW()),
+  ('Jeu d''horreur', 'Vivez une expérience d''horreur intense', 'Horreur', '{"Psychologique"}', 18, '{"Violence", "Sexual Content"}', NOW(), NOW()),
+  ('Jeu de stratégie', 'Développez votre empire dans ce jeu de stratégie', 'Stratégie', '{"Empire", "Gestion"}', 12, '{"Violence"}', NOW(), NOW()),
+  ('Simulation de train', 'Gérez un réseau ferroviaire', 'Simulation', '{"Transport"}', 3, '{"Bad Language"}', NOW(), NOW()),
+  ('Survie dans l''espace', 'Survivez dans l''espace avec des ressources limitées', 'Survival', '{"Science-fiction"}', 16, '{"Violence"}', NOW(), NOW());
 
 
 INSERT INTO platforms (name, devices) VALUES ('PlayStation', ARRAY['PS4', 'PS5']);
 INSERT INTO platforms (name, devices) VALUES ('Xbox', ARRAY['Xbox One', 'Xbox Series X']);
+INSERT INTO platforms (name, devices) VALUES ('PC', ARRAY['Windows', 'Linux', 'MacOS', 'Steam']);
+
+
+
+INSERT INTO game_platforms (game_id, platform_id, compatible_device, release_date, price, stock) VALUES
+-- 🎮 Jeux exclusifs à une plateforme (single-platform)
+(1, 1, 'PS5', '2025-03-21', 49.99, 10),  -- The Last Warrior uniquement sur PS5
+(2, 2, 'Xbox Series X', '2026-02-10', 19.99, 45),  -- Space Odyssey uniquement sur Xbox Series X
+(5, 3, 'Windows', '2025-07-30', 29.99, 20),  -- Zombie Outbreak uniquement sur Windows
+(10, 3, 'MacOS', '2026-03-05', 29.99, 30),  -- Alien Invasion uniquement sur MacOS
+
+-- 🔄 Jeux cross-platform (PC + consoles)
+(7, 1, 'PS5', '2025-08-01', 59.99, 25),  -- Fantasy Legends sur PS5
+(7, 2, 'Xbox Series X', '2025-08-01', 59.99, 25),  -- Fantasy Legends sur Xbox Series X
+(7, 3, 'Windows', '2025-08-01', 59.99, 25),  -- Fantasy Legends sur PC Windows
+
+(12, 1, 'PS5', '2025-10-05', 19.99, 40),  -- Dark Sorcery sur PS5
+(12, 2, 'Xbox Series X', '2025-10-05', 19.99, 40),  -- Dark Sorcery sur Xbox Series X
+(12, 3, 'MacOS', '2025-10-05', 19.99, 40),  -- Dark Sorcery sur MacOS
+
+(17, 1, 'PS5', '2025-12-11', 69.99, 15),  -- Galactic Empire sur PS5
+(17, 2, 'Xbox Series X', '2025-12-11', 69.99, 15),  -- Galactic Empire sur Xbox Series X
+(17, 3, 'Windows', '2025-12-11', 69.99, 15),  -- Galactic Empire sur Windows
+
+-- 📀 Jeux prenant en charge plusieurs générations de consoles
+(3, 1, 'PS4', '2025-06-12', 39.99, 15),  -- Cyber Rebellion sur PS4
+(3, 1, 'PS5', '2025-06-12', 39.99, 15),  -- Cyber Rebellion sur PS5
+
+(8, 2, 'Xbox One', '2026-04-01', 24.99, 60),  -- Battle Royale X sur Xbox One
+(8, 2, 'Xbox Series X', '2026-04-01', 24.99, 60),  -- Battle Royale X sur Xbox Series X
+
+(9, 1, 'PS4', '2025-09-15', 9.99, 30),  -- Lost in Time sur PS4
+(9, 1, 'PS5', '2025-09-15', 9.99, 30),  -- Lost in Time sur PS5
+
+(16, 2, 'Xbox One', '2026-07-25', 39.99, 20),  -- Ghost Hunters sur Xbox One
+(16, 2, 'Xbox Series X', '2026-07-25', 39.99, 20),  -- Ghost Hunters sur Xbox Series X
+
+(20, 1, 'PS5', '2027-07-15', 49.99, 40),  -- Speed Drifters sur PS5
+(20, 3, 'MacOS', '2027-07-15', 49.99, 40),  -- Speed Drifters sur MacOS
+(20, 3, 'Windows', '2027-07-15', 49.99, 40);  -- Speed Drifters sur Windows

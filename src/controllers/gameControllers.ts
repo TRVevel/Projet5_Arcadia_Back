@@ -14,9 +14,9 @@ export async function getAllGames(req: Request, res: Response) {
 }
 
 export async function addGame(req: Request, res: Response) {
-    const {title, description, genre, sub_genres,pegi, sensitive_content, release_date, price, stock  } = validateSchema(req.body, gameSchema);
+    const {title, description, genre, sub_genres,pegi, sensitive_content} = validateSchema(req.body, gameSchema);
     try{
-        if (!title || !description || !genre || !sub_genres || !pegi || !sensitive_content || !release_date || !price || !stock) {
+        if (!title || !description || !genre || !sub_genres || !pegi || !sensitive_content) {
             res.status(400).json({ message: 'Tous les champs sont requis' });
             return;
         }
@@ -34,9 +34,6 @@ export async function addGame(req: Request, res: Response) {
             sub_genres,
             pegi,
             sensitive_content,
-            release_date, // Stocke les données binaires directement
-            price,
-            stock
         });
         res.status(201).json({message:'Ajout du game:', data: newGame});
 
