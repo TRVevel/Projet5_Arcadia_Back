@@ -1,5 +1,5 @@
 import express from "express";
-import { addDeviceFromPlatform, addPlatform, getAllPlatform, modifyPlatform, removeDeviceFromPlatform } from "../controllers/platformControllers";
+import { addDeviceFromPlatform, addPlatform, getAllPlatform, modifyPlatform, removeDeviceFromPlatform } from "../controllers/staff/platformControllers";
 
 const router = express.Router();
 router.get("/platforms", getAllPlatform);

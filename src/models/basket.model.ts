@@ -6,25 +6,27 @@ import GamePlatform from "./game_platforms.model";
 
 
 // Définition des attributs d'un commande
-interface OrderAttributes {
+interface BasketAttributes {
     id?: number;
     customer_id: number;
+    game_platform_id: number;
+    quantity: number;
     total_price?: number;
-    status?: "pending" | "shipped" | "delivered" | "cancelled";
     createdAt?: Date;
     updatedAt?: Date;
 }
 
-class Order extends Model<OrderAttributes> implements OrderAttributes {
+class Basket extends Model<BasketAttributes> implements BasketAttributes {
     public id!: number;
     public customer_id!: number;
+    public game_platform_id!: number;
+    public quantity!: number;
     public total_price!: number;
-    public status!: "pending" | "shipped" | "delivered" | "cancelled";
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
 
-Order.init(
+Basket.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -39,6 +41,18 @@ Order.init(
                 key: "id",
             },
         },
+        game_platform_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: Game,
+                key: "id",
+            },
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         total_price: {
             type: DataTypes.DECIMAL,
             allowNull: false,
@@ -46,25 +60,20 @@ Order.init(
                 isDecimal: true,
                 min: 0,
             },
-        },
-        status:{
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: "pending",
-            validate:{
-                isIn: [["pending", "shipped", "delivered", "cancelled"]]
-            }
         }
     
     },
     {
         sequelize,
-        tableName: "orders",
+        tableName: "baskets",
         timestamps: true, // Ajoute createdAt & updatedAt
     }
 );
-Customer.hasMany(Order, { foreignKey: "customer_id" });
-Order.belongsTo(Customer, { foreignKey: "customer_id" });
+Customer.hasMany(Basket, { foreignKey: "customer_id" });
+Basket.belongsTo(Customer, { foreignKey: "customer_id" });
+
+GamePlatform.hasMany(Basket, { foreignKey: "game_platform_id" });
+Basket.belongsTo(GamePlatform, { foreignKey: "game_platform_id" });
 
 
-export default Order;
+export default Basket;

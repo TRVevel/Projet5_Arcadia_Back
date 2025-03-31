@@ -5,7 +5,7 @@ import sequelize from "../config/database";
 interface CustomerAttributes {
     id?: number;
     first_name: string;
-    surname: string;
+    last_name: string;
     email: string;
     hashedpassword: string;
     order_history?: number[];
@@ -16,7 +16,7 @@ interface CustomerAttributes {
 class Customer extends Model<CustomerAttributes> implements CustomerAttributes {
     public id!: number;
     public first_name!: string;
-    public surname!: string;
+    public last_name!: string;
     public email!: string;
     public hashedpassword!: string;
     public order_history!: number[];
@@ -35,7 +35,7 @@ Customer.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        surname: {
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },

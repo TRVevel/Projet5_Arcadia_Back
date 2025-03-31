@@ -11,6 +11,7 @@ interface GameAttributes {
     sub_genres: string[];
     pegi: 3 | 7 | 12 | 16 | 18;
     sensitive_content: string;
+    status?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -23,6 +24,7 @@ class Game extends Model<GameAttributes> implements GameAttributes {
     public sub_genres!: string[];
     public pegi!: 3 | 7 | 12 | 16 | 18;
     public sensitive_content!: string;
+    public status!: boolean;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -68,7 +70,10 @@ Game.init(
         sensitive_content: {
             type: DataTypes.STRING,
         },
-        
+        status: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
         
     },
     {

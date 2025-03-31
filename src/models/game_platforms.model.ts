@@ -12,6 +12,7 @@ interface GamePlatformAttributes {
     release_date: Date;
     image?: string;
     stock: number;
+    status?: boolean;
 }
 
 class GamePlatform extends Model<GamePlatformAttributes> implements GamePlatformAttributes {
@@ -23,6 +24,7 @@ class GamePlatform extends Model<GamePlatformAttributes> implements GamePlatform
     public release_date!: Date;
     public image!: string;
     public stock!: number;
+    public status!: boolean;
 }
 
 GamePlatform.init(
@@ -76,7 +78,11 @@ GamePlatform.init(
                 min: 0,
             },
         },
+        status: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
     },
+},
     {
         sequelize,
         tableName: "game_platforms",

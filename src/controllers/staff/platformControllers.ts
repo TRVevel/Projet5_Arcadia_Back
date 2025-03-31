@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Platform from "../models/platform.model";
+import Platform from "../../models/platform.model";
 export async function getAllPlatform(req: Request, res: Response) {
     try {
         const platforms = await Platform.findAll();

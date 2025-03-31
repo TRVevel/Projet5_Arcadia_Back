@@ -1,37 +1,53 @@
-import dotenv from 'dotenv';
 import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { verifyToken } from '../utils/JWTUtils';
 
 dotenv.config();
 
-const SECRET_KEY= process.env.JWT_KEY;
+const SECRET_KEY = process.env.JWT_KEY;
 
 export function verifyTokenMiddleware(req: Request, res: Response, next: NextFunction): void {
-    if(SECRET_KEY===undefined){
+    if (!SECRET_KEY) {
         throw new Error('SECRET KEY is not defined');
     }
-    const cookie = req.headers.cookie;
-    if(!cookie){
-        res.status(401).json({message: 'Vous devez être connecté pour accéder à cette ressource'});
-        return;
-    }
-    const token = cookie.split('=')[1];
-    console.log(token);
 
-    if(!token){
-        res.status(401).json({message: 'Vous devez être connecté pour accéder à cette ressource'});
+    console.log("Cookies reçus :", req.headers.cookie);
+
+    const cookie = req.headers.cookie;
+    if (!cookie) {
+        res.status(401).json({ message: 'Vous devez être connecté pour accéder à cette ressource' });
         return;
     }
-    try{
+
+    const token = cookie.split('=')[1];
+    console.log("Token extrait :", token);
+
+    if (!token) {
+        res.status(401).json({ message: 'Vous devez être connecté pour accéder à cette ressource' });
+        return;
+    }
+
+    try {
         const decoded = verifyToken(token);
-        req.headers.user = JSON.stringify(decoded);
-        next();
-        if(!decoded){
-            res.status(403).send({message: 'Token Invalide ou Expiré'});
+        console.log("Token décodé :", decoded);
+
+        if (!decoded || typeof decoded !== 'object' || !decoded.id) {
+            res.status(403).json({ message: "Token invalide ou expiré" });
+            return;
         }
 
-    }catch(error){
-        res.status(401).send({message: 'Vous n\'êtes pas autorisé à accéder à cette ressource'});
-        return;
+        req.user = {
+            id: decoded.id,
+            email: decoded.email,
+            role: decoded.type === "User" ? decoded.role : "Customer",
+            type: decoded.type,
+        };
+
+        next();
+    } catch (error) {
+        res.status(401).json({ message: "Token invalide ou expiré" });
     }
 }
+
+
