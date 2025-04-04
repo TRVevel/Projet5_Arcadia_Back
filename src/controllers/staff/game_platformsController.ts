@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import GamePlatform from "../../models/game_platforms.model";
 import Game from "../../models/game.model";
+import Platform from "../../models/platform.model";
 
 export async function getAllGamesPlatforms(req: Request, res: Response) {
     try {
@@ -12,6 +13,58 @@ export async function getAllGamesPlatforms(req: Request, res: Response) {
         
     }
 }
+
+
+export async function getGamePlatformDetails(req: Request, res: Response) {
+    const { id } = req.params; // ID du game_platform à récupérer
+
+    try {
+        // Récupérer la game_platform en utilisant l'ID
+        const gamePlatform = await GamePlatform.findOne({
+            where: { id },
+            attributes: ['game_id', 'platform_id', 'compatible_device']  // On récupère uniquement les IDs du jeu et de la plateforme
+        });
+
+        // Vérifier si la game_platform existe
+        if (!gamePlatform) {
+            res.status(404).json({ message: "GamePlatform introuvable" });
+            return;
+        }
+
+        const { game_id, platform_id } = gamePlatform;
+
+        // Rechercher les détails du jeu à partir du game_id
+        const game = await Game.findOne({
+            where: { id: game_id },
+            attributes: ['id', 'title', 'description', 'developer', 'publisher', 'genre', 'sub_genres', 'pegi', 'sensitive_content', 'status']
+        });
+
+        // Rechercher les détails de la plateforme à partir du platform_id
+        const platform = await Platform.findOne({
+            where: { id: platform_id },
+            attributes: ['id', 'name']
+        });
+
+        // Vérifier si le jeu ou la plateforme n'ont pas été trouvés
+        if (!game || !platform) {
+            res.status(404).json({ message: "Jeu ou Plateforme introuvable" });
+            return;
+        }
+
+        // Répondre avec les informations du jeu, de la plateforme et de la game_platform
+       res.status(200).json({
+            game_platform: gamePlatform,
+            game: game,  // Détails du jeu
+            platform: platform  // Détails de la plateforme
+        });
+        return;
+
+    } catch (error: any) {
+        console.error("Erreur lors de la récupération des détails du GamePlatform : ", error);
+        res.status(500).json({ message: "Erreur lors de la récupération des détails du GamePlatform" });
+    }
+}
+
 
 export async function addGamePlatform(req: Request, res: Response) {
     const {game_id, platform_id, compatible_device, release_date, price, stock  } = await req.body;

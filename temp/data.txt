@@ -1,69 +1,98 @@
 INSERT INTO users (first_name, surname, email, role, hashedpassword, "createdAt", "updatedAt") VALUES
-('Alice', 'Dupont', 'alice.dupont@example.com', 'Admin', 'hashedpass1', NOW(), NOW()),
-('Bob', 'Martin', 'bob.martin@example.com', 'Employee', 'hashedpass2', NOW(), NOW()),
-('Charlie', 'Dubois', 'charlie.dubois@example.com', 'Storekeeper', 'hashedpass3', NOW(), NOW()),
-('David', 'Leroy', 'david.leroy@example.com', 'Admin', 'hashedpass4', NOW(), NOW()),
-('Eve', 'Morel', 'eve.morel@example.com', 'Employee', 'hashedpass5', NOW(), NOW()),
-('François', 'Lambert', 'francois.lambert@example.com', 'Storekeeper', 'hashedpass6', NOW(), NOW()),
-('Gabrielle', 'Rousseau', 'gabrielle.rousseau@example.com', 'Employee', 'hashedpass7', NOW(), NOW()),
-('Hugo', 'Fournier', 'hugo.fournier@example.com', 'Admin', 'hashedpass8', NOW(), NOW()),
-('Isabelle', 'Girard', 'isabelle.girard@example.com', 'Storekeeper', 'hashedpass9', NOW(), NOW()),
-('Jean', 'Bonbeur', 'jean.bertrand@example.com', 'Employee', 'hashedpass10', NOW(), NOW()),
-('Karim', 'Du91', 'karim.moreau@example.com', 'Admin', 'hashedpass11', NOW(), NOW()),
-('Laura', 'Garcia', 'laura.garcia@example.com', 'Employee', 'hashedpass12', NOW(), NOW()),
-('Maxime', 'Henry', 'maxime.henry@example.com', 'Storekeeper', 'hashedpass13', NOW(), NOW()),
-('Nina', 'Leclerc', 'nina.leclerc@example.com', 'Admin', 'hashedpass14', NOW(), NOW()),
-('Olivier', 'Dumont', 'olivier.dumont@example.com', 'Employee', 'hashedpass15', NOW(), NOW()),
-('Pauline', 'Andre', 'pauline.andre@example.com', 'Storekeeper', 'hashedpass16', NOW(), NOW()),
-('Quentin', 'Mofé', 'quentin.benoit@example.com', 'Admin', 'hashedpass17', NOW(), NOW()),
-('Romain', 'Rey', 'romain.rey@example.com', 'Employee', 'hashedpass18', NOW(), NOW()),
-('Sophie', 'Gonzalez', 'sophie.gonzalez@example.com', 'Storekeeper', 'hashedpass19', NOW(), NOW()),
-('Thomas', 'Meunier', 'thomas.meunier@example.com', 'Admin', 'hashedpass20', NOW(), NOW()),
-('Ursule', 'Marchand', 'ursule.marchand@example.com', 'Employee', 'hashedpass21', NOW(), NOW()),
-('Valentin', 'Faure', 'valentin.faure@example.com', 'Storekeeper', 'hashedpass22', NOW(), NOW()),
-('Wendy', 'Perrin', 'wendy.perrin@example.com', 'Admin', 'hashedpass23', NOW(), NOW()),
-('Xavier', 'Dupuis', 'xavier.dupuis@example.com', 'Employee', 'hashedpass24', NOW(), NOW()),
-('Yasmine', 'Blanc', 'yasmine.blanc@example.com', 'Storekeeper', 'hashedpass25', NOW(), NOW()),
-('Zacharie', 'Renaud', 'zacharie.renaud@example.com', 'Admin', 'hashedpass26', NOW(), NOW()),
-('Amandine', 'Vittel', 'amandine.vidal@example.com', 'Employee', 'hashedpass27', NOW(), NOW()),
-('Bastien', 'Lejeune', 'bastien.lejeune@example.com', 'Storekeeper', 'hashedpass28', NOW(), NOW()),
-('Clémence', 'Denis', 'clemence.denis@example.com', 'Admin', 'hashedpass29', NOW(), NOW()),
-('Damien', 'Gillet', 'damien.gillet@example.com', 'Employee', 'hashedpass30', NOW(), NOW()),
-('Élodie', 'Navarro', 'elodie.navarro@example.com', 'Storekeeper', 'hashedpass31', NOW(), NOW()),
-('Fabien', 'Morin', 'fabien.morin@example.com', 'Admin', 'hashedpass32', NOW(), NOW()),
-('Géraldine', 'Perrot', 'geraldine.perrot@example.com', 'Employee', 'hashedpass33', NOW(), NOW()),
-('Hélène', 'Rodriguez', 'helene.rodriguez@example.com', 'Storekeeper', 'hashedpass34', NOW(), NOW()),
-('Igor', 'Bernard', 'igor.bernard@example.com', 'Admin', 'hashedpass35', NOW(), NOW()),
-('Juliette', 'Michel', 'juliette.michel@example.com', 'Employee', 'hashedpass36', NOW(), NOW()),
-('Kevin', 'LeThug', 'kevin.aubert@example.com', 'Storekeeper', 'hashedpass37', NOW(), NOW()),
-('Léa', 'Fernandez', 'lea.fernandez@example.com', 'Admin', 'hashedpass38', NOW(), NOW()),
-('Matthieu', 'Richard', 'matthieu.richard@example.com', 'Employee', 'hashedpass39', NOW(), NOW()),
-('Nicolas', 'Giraud', 'nicolas.giraud@example.com', 'Storekeeper', 'hashedpass40', NOW(), NOW());
+-- Admins
+('Alice', 'Dupont', 'alice.dupont@example.com', 'Admin', 'hashed_pw_01', NOW(), NOW()),
+('Jean', 'Moreau', 'jean.moreau@example.com', 'Admin', 'hashed_pw_02', NOW(), NOW()),
+('Sophie', 'Lemoine', 'sophie.lemoine@example.com', 'Admin', 'hashed_pw_03', NOW(), NOW()),
+('Karim', 'Benali', 'karim.benali@example.com', 'Admin', 'hashed_pw_04', NOW(), NOW()),
+
+-- Storekeepers
+('Nora', 'Durand', 'nora.durand@example.com', 'Storekeeper', 'hashed_pw_05', NOW(), NOW()),
+('Paul', 'Leroy', 'paul.leroy@example.com', 'Storekeeper', 'hashed_pw_06', NOW(), NOW()),
+('Emma', 'Fabre', 'emma.fabre@example.com', 'Storekeeper', 'hashed_pw_07', NOW(), NOW()),
+('Louis', 'Carre', 'louis.carre@example.com', 'Storekeeper', 'hashed_pw_08', NOW(), NOW()),
+('Clara', 'Roux', 'clara.roux@example.com', 'Storekeeper', 'hashed_pw_09', NOW(), NOW()),
+('Mehdi', 'Azouzi', 'mehdi.azouzi@example.com', 'Storekeeper', 'hashed_pw_10', NOW(), NOW()),
+
+-- Employees
+('Tom', 'Martel', 'tom.martel@example.com', 'Employee', 'hashed_pw_11', NOW(), NOW()),
+('Lina', 'Giraud', 'lina.giraud@example.com', 'Employee', 'hashed_pw_12', NOW(), NOW()),
+('Hugo', 'Fernandez', 'hugo.fernandez@example.com', 'Employee', 'hashed_pw_13', NOW(), NOW()),
+('Jade', 'Chevalier', 'jade.chevalier@example.com', 'Employee', 'hashed_pw_14', NOW(), NOW()),
+('Noé', 'Lopez', 'noe.lopez@example.com', 'Employee', 'hashed_pw_15', NOW(), NOW()),
+('Camille', 'Vidal', 'camille.vidal@example.com', 'Employee', 'hashed_pw_16', NOW(), NOW()),
+('Lucas', 'Charpentier', 'lucas.charpentier@example.com', 'Employee', 'hashed_pw_17', NOW(), NOW()),
+('Eva', 'Barbier', 'eva.barbier@example.com', 'Employee', 'hashed_pw_18', NOW(), NOW()),
+('Maxime', 'Picard', 'maxime.picard@example.com', 'Employee', 'hashed_pw_19', NOW(), NOW()),
+('Léa', 'Millet', 'lea.millet@example.com', 'Employee', 'hashed_pw_20', NOW(), NOW());
 
 
-INSERT INTO games (title, description, genre, sub_genres, pegi, sensitive_content, "createdAt", "updatedAt")
-VALUES
-  ('Tireur d''élite', 'Un jeu de tir intense', 'Shooter', '{"Histoire", "Gore"}', 18, '{"Violence"}', NOW(), NOW()),
-  ('RPG Aventure', 'Un RPG d''aventure fantastique', 'RPG', '{"Fantasy", "Aventure"}', 16, '{"Violence", "Bad Language"}', NOW(), NOW()),
-  ('Course de voitures', 'Des courses à couper le souffle', 'Racing', '{"Simulation"}', 12, '{"Violence"}', NOW(), NOW()),
-  ('Survie Extrême', 'Survivre dans un monde apocalyptique', 'Survival', '{"Horreur"}', 18, '{"Violence", "Drugs"}', NOW(), NOW()),
-  ('Puzzle Magique', 'Résolvez des énigmes magiques', 'Puzzle', '{"Casse-tête", "Fantastique"}', 3, '{"Bad Language"}', NOW(), NOW()),
-  ('Chasseur de fantômes', 'Capturez des fantômes dans cette aventure', 'Action', '{"Horreur"}', 16, '{"Violence"}', NOW(), NOW()),
-  ('Bataille Royale', 'Un jeu de bataille royale multijoueur', 'Shooter', '{"Compétitif"}', 16, '{"Violence", "Gambling"}', NOW(), NOW()),
-  ('Simulateur de vol', 'Simulez des vols aériens réalistes', 'Simulation', '{"Avion"}', 12, '{"Violence"}', NOW(), NOW()),
-  ('Héros Médiéval', 'Combattez pour sauver le royaume', 'RPG', '{"Médiéval", "Aventure"}', 7, '{"Violence"}', NOW(), NOW()),
-  ('Combat de robots', 'Affrontez des robots dans des arènes futuristes', 'Action', '{"Science-fiction"}', 18, '{"Violence"}', NOW(), NOW()),
-  ('Farming Sim', 'Gérez votre propre ferme', 'Simulation', '{"Agriculture"}', 3, '{"Bad Language"}', NOW(), NOW()),
-  ('Exploration spatiale', 'Explorez l''univers en vaisseau spatial', 'Aventure', '{"Science-fiction"}', 12, '{"Violence"}', NOW(), NOW()),
-  ('Survie Zombie', 'Survivez dans un monde infesté de zombies', 'Survival', '{"Horreur"}', 18, '{"Violence"}', NOW(), NOW()),
-  ('Jeu de gestion', 'Gérez votre propre entreprise', 'Simulation', '{"Gestion"}', 7, '{"Bad Language"}', NOW(), NOW()),
-  ('Course futuriste', 'Des courses futuristes avec des véhicules high-tech', 'Racing', '{"Sci-Fi"}', 16, '{"Violence"}', NOW(), NOW()),
-  ('Jeu de cartes', 'Collectionnez et combattez avec des cartes', 'Stratégie', '{"Cartes"}', 3, '{"Bad Language"}', NOW(), NOW()),
-  ('Simulation de vie', 'Vivez une vie virtuelle', 'Simulation', '{"Vie"}', 7, '{"Bad Language"}', NOW(), NOW()),
-  ('Jeu d''horreur', 'Vivez une expérience d''horreur intense', 'Horreur', '{"Psychologique"}', 18, '{"Violence", "Sexual Content"}', NOW(), NOW()),
-  ('Jeu de stratégie', 'Développez votre empire dans ce jeu de stratégie', 'Stratégie', '{"Empire", "Gestion"}', 12, '{"Violence"}', NOW(), NOW()),
-  ('Simulation de train', 'Gérez un réseau ferroviaire', 'Simulation', '{"Transport"}', 3, '{"Bad Language"}', NOW(), NOW()),
-  ('Survie dans l''espace', 'Survivez dans l''espace avec des ressources limitées', 'Survival', '{"Science-fiction"}', 16, '{"Violence"}', NOW(), NOW());
+INSERT INTO customers (
+    first_name,
+    last_name,
+    email,
+    phone,
+    adress,
+    hashedpassword,
+    order_history,
+    "createdAt",
+    "updatedAt"
+) VALUES
+('Alice', 'Martin', 'alice.martin@example.com', '0600000001', '123 rue de Paris', 'hashedpwd123', '{}', NOW(), NOW()),
+('Bob', 'Dupont', 'bob.dupont@example.com', '0600000002', '456 avenue de Lyon', 'hashedpwd124', '{}', NOW(), NOW()),
+('Charlie', 'Durand', 'charlie.durand@example.com', '0600000003', '789 boulevard de Lille', 'hashedpwd125', '{}', NOW(), NOW()),
+('Diane', 'Petit', 'diane.petit@example.com', '0600000004', '101 rue de Nice', 'hashedpwd126', '{}', NOW(), NOW()),
+('Ethan', 'Lemoine', 'ethan.lemoine@example.com', '0600000005', '234 chemin de Nantes', 'hashedpwd127', '{}', NOW(), NOW()),
+('Fanny', 'Girard', 'fanny.girard@example.com', '0600000006', '345 rue de Marseille', 'hashedpwd128', '{}', NOW(), NOW()),
+('Gaspard', 'Roux', 'gaspard.roux@example.com', '0600000007', '456 allée de Strasbourg', 'hashedpwd129', '{}', NOW(), NOW()),
+('Hugo', 'Benoit', 'hugo.benoit@example.com', '0600000008', '567 impasse de Brest', 'hashedpwd130', '{}', NOW(), NOW()),
+('Inès', 'Leclerc', 'ines.leclerc@example.com', '0600000009', '678 place de Dijon', 'hashedpwd131', '{}', NOW(), NOW()),
+('Jade', 'Faure', 'jade.faure@example.com', '0600000010', '789 route de Metz', 'hashedpwd132', '{}', NOW(), NOW()),
+('Kevin', 'Marchand', 'kevin.marchand@example.com', '0600000011', '890 voie de Tours', 'hashedpwd133', '{}', NOW(), NOW()),
+('Léa', 'Garnier', 'lea.garnier@example.com', '0600000012', '901 rue de Toulouse', 'hashedpwd134', '{}', NOW(), NOW()),
+('Mathis', 'Barbier', 'mathis.barbier@example.com', '0600000013', '102 avenue de Rennes', 'hashedpwd135', '{}', NOW(), NOW()),
+('Nina', 'Perrin', 'nina.perrin@example.com', '0600000014', '103 avenue de Bordeaux', 'hashedpwd136', '{}', NOW(), NOW()),
+('Oscar', 'Blanc', 'oscar.blanc@example.com', '0600000015', '104 avenue de Reims', 'hashedpwd137', '{}', NOW(), NOW()),
+('Pauline', 'Lopez', 'pauline.lopez@example.com', '0600000016', '105 avenue de Nîmes', 'hashedpwd138', '{}', NOW(), NOW()),
+('Quentin', 'Fontaine', 'quentin.fontaine@example.com', '0600000017', '106 avenue de Bayonne', 'hashedpwd139', '{}', NOW(), NOW()),
+('Rania', 'Clement', 'rania.clement@example.com', '0600000018', '107 avenue de Grenoble', 'hashedpwd140', '{}', NOW(), NOW()),
+('Sacha', 'Robin', 'sacha.robin@example.com', '0600000019', '108 avenue de Perpignan', 'hashedpwd141', '{}', NOW(), NOW()),
+('Tara', 'Morin', 'tara.morin@example.com', '0600000020', '109 avenue de Clermont', 'hashedpwd142', '{}', NOW(), NOW());
+
+
+INSERT INTO games (
+    title,
+    description,
+    developer,
+    publisher,
+    genre,
+    sub_genres,
+    pegi,
+    sensitive_content,
+    status,
+    "createdAt",
+    "updatedAt"
+) VALUES
+('Eclipse of Souls', 'A dark fantasy RPG journey through cursed lands.', 'MoonDev', 'ShadowPub', 'RPG', ARRAY['Action', 'Adventure'], 16, 'Violence, Blood', true, NOW(), NOW()),
+('Cyber Drift', 'High-speed racing in a futuristic cyberpunk city.', 'SpeedForge', 'NeoGames', 'Racing', ARRAY['Sci-Fi', 'Futuristic'], 12, 'Mild language', true, NOW(), NOW()),
+('Kingdom Siege', 'Strategic medieval battles and kingdom building.', 'CastleCore', 'IronGames', 'Strategy', ARRAY['Medieval', 'Real-Time'], 7, 'Mild violence', true, NOW(), NOW()),
+('Space Outlaws', 'Co-op shooter in a galaxy full of criminals.', 'VoidCode', 'NovaEnt', 'Shooter', ARRAY['Co-op', 'Sci-Fi'], 18, 'Strong language, Violence', true, NOW(), NOW()),
+('Pixel Farmer', 'Relax and grow crops in a colorful pixel world.', 'RetroRoots', 'HappyPlay', 'Simulation', ARRAY['Farming', 'Casual'], 3, 'None', true, NOW(), NOW()),
+('Haunted Mansion VR', 'Survive a haunted house in immersive VR.', 'FrightWorks', 'DarkVision', 'Horror', ARRAY['VR', 'Puzzle'], 16, 'Scary images', true, NOW(), NOW()),
+('Ocean Quest', 'Explore and protect marine life.', 'BlueWave', 'EcoPlay', 'Adventure', ARRAY['Exploration', 'Educational'], 7, 'None', true, NOW(), NOW()),
+('Mecha Arena', 'Robot vs robot in battle arenas.', 'SteelCore', 'TechGames', 'Action', ARRAY['Multiplayer', 'Sci-Fi'], 12, 'Fantasy violence', true, NOW(), NOW()),
+('Tower Escape', 'Escape a magical prison using your powers.', 'MysticDev', 'TowerSoft', 'Puzzle', ARRAY['Magic', 'Platformer'], 7, 'None', true, NOW(), NOW()),
+('Zombie Boulevard', 'Survive endless zombie waves in the city.', 'DeadPixel', 'SurvivalLabs', 'Horror', ARRAY['Shooter', 'Arcade'], 18, 'Blood, Gore', true, NOW(), NOW()),
+('Skate Rush', 'Perform insane tricks and skate the world.', 'KickFlip', 'UrbanGamez', 'Sports', ARRAY['Extreme', 'Arcade'], 3, 'None', true, NOW(), NOW()),
+('Ancient Runes', 'Decode runes and unlock ancient mysteries.', 'GlyphSoft', 'MythoGames', 'Puzzle', ARRAY['History', 'Mystery'], 7, 'None', true, NOW(), NOW()),
+('Battle Orchestra', 'Fantasy-themed tactical war game.', 'SymphonyDev', 'WarNote', 'Strategy', ARRAY['Turn-Based', 'Fantasy'], 12, 'Violence', true, NOW(), NOW()),
+('Alien Garden', 'Grow strange plants on a distant world.', 'FloraX', 'GreenDream', 'Simulation', ARRAY['Sci-Fi', 'Farming'], 3, 'None', true, NOW(), NOW()),
+('Midnight Drift', 'Street racing under neon lights.', 'NightTorque', 'GearboxGames', 'Racing', ARRAY['Arcade', 'Urban'], 12, 'Mild themes', true, NOW(), NOW()),
+('Dino Rancher', 'Train and ride dinosaurs in open world.', 'JurassicFun', 'PrehistoricPlay', 'Adventure', ARRAY['Open-World', 'Animals'], 7, 'None', true, NOW(), NOW()),
+('Hack the Grid', 'Cyber hacking stealth missions.', 'CodeBreakers', 'BinaryOps', 'Stealth', ARRAY['Hacking', 'Sci-Fi'], 16, 'Language', true, NOW(), NOW()),
+('Knight School', 'Become a knight in a humorous academy.', 'FunnyForge', 'CartoonGames', 'Action', ARRAY['Comedy', 'Fantasy'], 7, 'Cartoon violence', true, NOW(), NOW()),
+('Stellar Chef', 'Cook intergalactic dishes under pressure.', 'GalaxyBites', 'StarPlates', 'Simulation', ARRAY['Cooking', 'Time Management'], 3, 'None', true, NOW(), NOW()),
+('Deep Dive', 'Survive in the deepest parts of the ocean.', 'AbyssStudios', 'PressurePlay', 'Survival', ARRAY['Underwater', 'Exploration'], 12, 'Tense atmosphere', true, NOW(), NOW());
+
 
 
 INSERT INTO platforms (name, devices) VALUES ('PlayStation', ARRAY['PS4', 'PS5']);
@@ -72,39 +101,66 @@ INSERT INTO platforms (name, devices) VALUES ('PC', ARRAY['Windows', 'Linux', 'M
 
 
 
-INSERT INTO game_platforms (game_id, platform_id, compatible_device, release_date, price, stock) VALUES
--- 🎮 Jeux exclusifs à une plateforme (single-platform)
-(1, 1, 'PS5', '2025-03-21', 49.99, 10),  -- The Last Warrior uniquement sur PS5
-(2, 2, 'Xbox Series X', '2026-02-10', 19.99, 45),  -- Space Odyssey uniquement sur Xbox Series X
-(5, 3, 'Windows', '2025-07-30', 29.99, 20),  -- Zombie Outbreak uniquement sur Windows
-(10, 3, 'MacOS', '2026-03-05', 29.99, 30),  -- Alien Invasion uniquement sur MacOS
+-- 🟦 1. CROSS-PLATFORM
+INSERT INTO game_platforms (game_id, platform_id, compatible_device, price, release_date, stock, status) VALUES
+(1, 1, 'PS5', 69.99, '2024-11-01', 100, true),
+(1, 2, 'Xbox Series X', 69.99, '2024-11-01', 90, true),
+(1, 4, 'Windows', 69.99, '2024-11-01', 150, true),
 
--- 🔄 Jeux cross-platform (PC + consoles)
-(7, 1, 'PS5', '2025-08-01', 59.99, 25),  -- Fantasy Legends sur PS5
-(7, 2, 'Xbox Series X', '2025-08-01', 59.99, 25),  -- Fantasy Legends sur Xbox Series X
-(7, 3, 'Windows', '2025-08-01', 59.99, 25),  -- Fantasy Legends sur PC Windows
+(2, 1, 'PS5', 59.99, '2023-10-01', 50, true),
+(2, 3, 'Switch', 59.99, '2023-10-01', 60, true),
+(2, 4, 'Windows', 59.99, '2023-10-01', 110, true),
 
-(12, 1, 'PS5', '2025-10-05', 19.99, 40),  -- Dark Sorcery sur PS5
-(12, 2, 'Xbox Series X', '2025-10-05', 19.99, 40),  -- Dark Sorcery sur Xbox Series X
-(12, 3, 'MacOS', '2025-10-05', 19.99, 40),  -- Dark Sorcery sur MacOS
+(3, 2, 'Xbox Series X', 49.99, '2023-08-01', 40, true),
+(3, 4, 'Windows', 49.99, '2023-08-01', 100, true);
 
-(17, 1, 'PS5', '2025-12-11', 69.99, 15),  -- Galactic Empire sur PS5
-(17, 2, 'Xbox Series X', '2025-12-11', 69.99, 15),  -- Galactic Empire sur Xbox Series X
-(17, 3, 'Windows', '2025-12-11', 69.99, 15),  -- Galactic Empire sur Windows
+-- 🟨 2. PLATFORM-UNIQUE
+INSERT INTO game_platforms (game_id, platform_id, compatible_device, price, release_date, stock, status) VALUES
+(4, 1, 'PS4', 39.99, '2022-06-10', 30, true),
+(5, 2, 'Xbox One', 39.99, '2022-06-20', 35, true),
+(6, 3, 'Switch', 44.99, '2022-07-10', 20, true),
+(7, 4, 'Windows', 29.99, '2022-08-01', 90, true),
+(8, 5, 'Android', 14.99, '2022-09-15', 120, true),
+(9, 6, 'SteamOS', 24.99, '2022-10-01', 45, true),
+(10, 7, 'Oculus Rift', 34.99, '2022-11-05', 60, true),
+(11, 8, 'GeForce Now', 19.99, '2022-12-01', 100, true);
 
--- 📀 Jeux prenant en charge plusieurs générations de consoles
-(3, 1, 'PS4', '2025-06-12', 39.99, 15),  -- Cyber Rebellion sur PS4
-(3, 1, 'PS5', '2025-06-12', 39.99, 15),  -- Cyber Rebellion sur PS5
+-- 🟥 3. DEVICE-UNIQUE (plusieurs devices, même plateforme)
+INSERT INTO game_platforms (game_id, platform_id, compatible_device, price, release_date, stock, status) VALUES
+(12, 1, 'PS4', 49.99, '2023-01-01', 40, true),
+(12, 1, 'PS5', 49.99, '2023-01-01', 40, true),
 
-(8, 2, 'Xbox One', '2026-04-01', 24.99, 60),  -- Battle Royale X sur Xbox One
-(8, 2, 'Xbox Series X', '2026-04-01', 24.99, 60),  -- Battle Royale X sur Xbox Series X
+(13, 2, 'Xbox One', 59.99, '2023-02-01', 55, true),
+(13, 2, 'Xbox Series X', 59.99, '2023-02-01', 60, true),
 
-(9, 1, 'PS4', '2025-09-15', 9.99, 30),  -- Lost in Time sur PS4
-(9, 1, 'PS5', '2025-09-15', 9.99, 30),  -- Lost in Time sur PS5
+(14, 3, 'Switch', 39.99, '2023-03-01', 30, true),
+(14, 3, 'Switch OLED', 39.99, '2023-03-01', 20, true),
 
-(16, 2, 'Xbox One', '2026-07-25', 39.99, 20),  -- Ghost Hunters sur Xbox One
-(16, 2, 'Xbox Series X', '2026-07-25', 39.99, 20),  -- Ghost Hunters sur Xbox Series X
+(15, 4, 'Windows', 44.99, '2023-04-01', 100, true),
+(15, 4, 'Linux', 44.99, '2023-04-01', 90, true);
 
-(20, 1, 'PS5', '2027-07-15', 49.99, 40),  -- Speed Drifters sur PS5
-(20, 3, 'MacOS', '2027-07-15', 49.99, 40),  -- Speed Drifters sur MacOS
-(20, 3, 'Windows', '2027-07-15', 49.99, 40);  -- Speed Drifters sur Windows
+-- 🟩 4. MULTI-DEVICE (jeux avec plusieurs devices sur plusieurs plateformes)
+INSERT INTO game_platforms (game_id, platform_id, compatible_device, price, release_date, stock, status) VALUES
+-- Jeu 16
+(16, 1, 'PS4', 59.99, '2023-05-01', 100, true),
+(16, 1, 'PS5', 59.99, '2023-05-01', 100, true),
+(16, 5, 'Android', 9.99, '2023-05-01', 200, true),
+(16, 5, 'iOS', 9.99, '2023-05-01', 200, true),
+
+-- Jeu 17
+(17, 2, 'Xbox One', 59.99, '2023-05-10', 80, true),
+(17, 2, 'Xbox Series X', 59.99, '2023-05-10', 80, true),
+(17, 4, 'Windows', 19.99, '2023-05-10', 100, true),
+(17, 6, 'SteamOS', 19.99, '2023-05-10', 60, true),
+
+-- Jeu 18
+(18, 3, 'Switch', 49.99, '2023-06-01', 70, true),
+(18, 3, 'Switch OLED', 49.99, '2023-06-01', 70, true),
+(18, 7, 'Oculus Rift', 29.99, '2023-06-01', 50, true),
+(18, 7, 'HTC Vive', 29.99, '2023-06-01', 50, true),
+
+-- Jeu 19
+(19, 4, 'Windows', 39.99, '2023-06-15', 150, true),
+(19, 4, 'Linux', 39.99, '2023-06-15', 150, true),
+(19, 8, 'GeForce Now', 14.99, '2023-06-15', 90, true),
+(19, 8, 'Luna', 14.99, '2023-06-15', 90, true);

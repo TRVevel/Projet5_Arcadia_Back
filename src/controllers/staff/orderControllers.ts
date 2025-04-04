@@ -16,6 +16,26 @@ export async function getAllOrders(req: Request, res: Response) {
         
     }
 }
+export async function listOrdersByCustomer(req: Request, res: Response) {
+    try {
+        const { customerId } = req.params;
+
+        // Vérification de l'existence du client
+        const customer = await Customer.findByPk(customerId);
+        if (!customer) {
+            res.status(404).json({ message: "ATTENTION : Ce client n'existe pas !" });
+            return;
+        }
+
+        // Récupération des commandes du client
+        const orders = await Order.findAll({ where: { customer_id: customerId } });
+        console.log(orders);
+        
+        res.status(200).json({ message: "le client Id = '" + customerId + "' nom = '" + customer.first_name + " "+  customer.last_name + "' a passé " + orders.length + " commandes qui sont :", data: orders });
+    } catch (err: any) {
+        res.status(500).json({ message: "Erreur interne", error: err.message });
+    }
+}
 
 export async function createOrder(req: Request, res: Response) {
     const { customer_id, game_platform_id_list } = req.body;
@@ -49,11 +69,15 @@ export async function createOrder(req: Request, res: Response) {
             gameInfo.stock -= quantity;
             gameInfoToUpdate.push(gameInfo);
         }
-
+        const customer= await Customer.findByPk(customer_id, { attributes: ['adress'] });
+        if (!customer) {
+            res.status(404).json({ message: "Adresse introuvable" });
+            return;
+        }
         // Création de la commande dans une transaction
         const newOrder = await sequelize.transaction(async (t) => {
             // Création de la commande
-            const order = await Order.create({ customer_id, total_price: totalPrice }, { transaction: t });
+            const order = await Order.create({ customer_id, adress:customer.adress, total_price: totalPrice }, { transaction: t });
 
             // Associer chaque produit à la commande dans OrderGamePlatform
             await Promise.all(
@@ -125,23 +149,3 @@ export const modifyOrderStatus = async (req: Request, res: Response): Promise<vo
       }
     };
 
-    export async function listOrdersByCustomer(req: Request, res: Response) {
-        try {
-            const { customerId } = req.params;
-    
-            // Vérification de l'existence du client
-            const customer = await Customer.findByPk(customerId);
-            if (!customer) {
-                res.status(404).json({ message: "ATTENTION : Ce client n'existe pas !" });
-                return;
-            }
-    
-            // Récupération des commandes du client
-            const orders = await Order.findAll({ where: { customer_id: customerId } });
-            console.log(orders);
-            
-            res.status(200).json({ message: "le client Id = '" + customerId + "' nom = '" + customer.first_name + " "+  customer.last_name + "' a passé " + orders.length + " commandes qui sont :", data: orders });
-        } catch (err: any) {
-            res.status(500).json({ message: "Erreur interne", error: err.message });
-        }
-    }

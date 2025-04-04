@@ -1,12 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
-import Platform from "./platform.model";
-import GamePlatform from "./game_platforms.model";
 
 interface GameAttributes {
     id?: number;
     title: string;
     description: string;
+    developer: string;
+    publisher: string;
     genre: string;
     sub_genres: string[];
     pegi: 3 | 7 | 12 | 16 | 18;
@@ -20,6 +20,8 @@ class Game extends Model<GameAttributes> implements GameAttributes {
     public id!: number;
     public title!: string;
     public description!: string;
+    public developer!: string;
+    public publisher!: string;
     public genre!: string;
     public sub_genres!: string[];
     public pegi!: 3 | 7 | 12 | 16 | 18;
@@ -44,6 +46,14 @@ Game.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        developer: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        publisher: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         genre: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -52,7 +62,6 @@ Game.init(
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
             validate: {
-                // Vérifie que chaque élément du tableau correspond à un motif précis (ici une chaîne avec des lettres et chiffres)
                 isArrayValid(value: string[]) {
                     if (!value.every(item => /^[A-Za-z0-9& ]+$/.test(item))) {
                         throw new Error("Each sub_genre must contain only letters, numbers, and '&'");
@@ -74,16 +83,15 @@ Game.init(
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },
-        
     },
     {
         sequelize,
         tableName: "games",
-        timestamps: true, // Ajoute createdAt & updatedAt
+        timestamps: true,
         indexes: [
             {
                 unique: true,
-                fields: ["title", "description", "genre"], // ✅ Empêche uniquement les doublons exacts
+                fields: ["title", "description", "genre"],
             },
         ],
     }

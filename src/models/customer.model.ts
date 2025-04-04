@@ -1,12 +1,14 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 
-// Définition des attributs d'un utilisateur
+// Définition des attributs d'un Customer
 interface CustomerAttributes {
     id?: number;
     first_name: string;
     last_name: string;
     email: string;
+    phone: string;
+    adress: string;
     hashedpassword: string;
     order_history?: number[];
     createdAt?: Date;
@@ -18,6 +20,8 @@ class Customer extends Model<CustomerAttributes> implements CustomerAttributes {
     public first_name!: string;
     public last_name!: string;
     public email!: string;
+    public phone!: string;
+    public adress!: string;
     public hashedpassword!: string;
     public order_history!: number[];
     public readonly createdAt!: Date;
@@ -46,6 +50,14 @@ Customer.init(
             validate: {
                 isEmail: true,
             },
+        },
+        phone:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        adress:{
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         hashedpassword: {
             type: DataTypes.STRING,

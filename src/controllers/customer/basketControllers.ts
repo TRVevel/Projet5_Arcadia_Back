@@ -7,14 +7,23 @@ import OrderGamePlatform from '../../models/order_game_platform.model';
 import Customer from '../../models/customer.model';
 
 
-export async function getAllBaskets(req: Request, res: Response) {
-    try {
-        const baskets = await Basket.findAll();
+export async function getCustomerBaskets(req: Request, res: Response) {
+    const customer_id = req.user?.id;
+    try{
+
+        const baskets = await Basket.findAll({ where: { customer_id } });
+
+        if (baskets.length === 0) {
+            res.status(404).json({ message: "Aucune commande trouvée pour ce client" });
+            return;
+        }
+
         res.status(200).json(baskets);
+        return;
     } catch (err: any) {
-        console.error('Erreur lors de la récupération des baskets : ', err)
-        res.status(500).json({ message: 'Erreur lors de la récupération des baskets' })
-        
+        console.error("Erreur lors de la récupération des commandes :", err);
+        res.status(500).json({ message: "Erreur lors de la récupération des commandes" });
+        return;
     }
 }
 
@@ -148,10 +157,14 @@ export async function confirmBasket(req: Request, res: Response) {
             gamePlatform.stock -= basket.quantity;
             gameInfoToUpdate.push(gamePlatform);
         }
-
+        const customer= await Customer.findByPk(customer_id, { attributes: ['adress'] });
+        if (!customer) {
+            res.status(404).json({ message: "Adresse introuvable" });
+            return;
+        }
         // Création de la commande dans une transaction
         const newOrder = await sequelize.transaction(async (t) => {
-            const order = await Order.create({ customer_id, total_price: totalPrice }, { transaction: t });
+            const order = await Order.create({ customer_id, adress:customer.adress, total_price: totalPrice }, { transaction: t });
 
             // Associer chaque produit à la commande
             await Promise.all(

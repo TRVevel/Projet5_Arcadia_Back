@@ -9,6 +9,7 @@ import GamePlatform from "./game_platforms.model";
 interface OrderAttributes {
     id?: number;
     customer_id: number;
+    adress?: string;
     total_price?: number;
     status?: "pending" | "shipped" | "delivered" | "cancelled";
     createdAt?: Date;
@@ -18,6 +19,7 @@ interface OrderAttributes {
 class Order extends Model<OrderAttributes> implements OrderAttributes {
     public id!: number;
     public customer_id!: number;
+    public adress!: string;
     public total_price!: number;
     public status!: "pending" | "shipped" | "delivered" | "cancelled";
     public readonly createdAt!: Date;
@@ -38,6 +40,10 @@ Order.init(
                 model: Customer,
                 key: "id",
             },
+        },
+        adress: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         total_price: {
             type: DataTypes.DECIMAL,

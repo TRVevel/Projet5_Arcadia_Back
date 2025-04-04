@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";4
+import { Request, Response, NextFunction } from "express";
+
 declare global {
     namespace Express {
         interface Request {
@@ -24,6 +25,11 @@ export function authorizeRoles(...allowedRoles: ("Customer" | "Employee" | "Stor
         const userRole = req.user.role;
         const userType = req.user.type;
 
+        // Si l'utilisateur est Admin, on l'accepte toujours
+        if (userRole === "Admin") {
+            return next();
+        }
+
         // Vérifie si l'utilisateur est autorisé en fonction de son rôle ou type
         if (!allowedRoles.includes(userType === "Customer" ? "Customer" : userRole)) {
             res.status(403).json({ message: "Accès interdit. Rôle insuffisant." });
@@ -34,4 +40,3 @@ export function authorizeRoles(...allowedRoles: ("Customer" | "Employee" | "Stor
         next();
     };
 }
-

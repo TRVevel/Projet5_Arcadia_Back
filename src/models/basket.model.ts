@@ -45,7 +45,7 @@ Basket.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: Game,
+                model: GamePlatform,
                 key: "id",
             },
         },
