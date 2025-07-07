@@ -1,7 +1,7 @@
 {
-  "name": "projet5_final",
+  "name": "projet5_final_backend",
   "version": "1.0.0",
-  "description": "Projet final, boutique de jeux video en ligne",
+  "description": "Backend du Projet final, boutique de jeux video en ligne",
   "license": "ISC",
   "author": "Quentin Piscione",
   "type": "commonjs",

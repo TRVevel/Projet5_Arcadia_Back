@@ -13,7 +13,7 @@ import game_platformsRoutes from "./routes/game_platformsRoutes";
 import basketRoutes from "./routes/basketRoutes";
 import orderRoutes from "./routes/orderRoutes";
 import cookieParser from 'cookie-parser';
-
+import cors from 'cors';
 //Création d'un serveur Express
 const app = express();
 
@@ -23,6 +23,10 @@ dotenv.config();
 //Définition du port du serveur
 const PORT = 3000;
 console.log("Lancement du serveur D'Arcadia")
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true // si tu utilises des cookies ou des headers auth
+}));
 //Config du serveur par défaut
 app.use(express.json());
 // Connecter à Sequelize

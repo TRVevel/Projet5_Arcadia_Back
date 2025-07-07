@@ -17,7 +17,7 @@ export async function customerRegister(req: Request, res: Response) {
            return ;
         }
 
-        const { first_name, last_name, email, phone, adress, password } = req.body;
+        const { first_name, last_name, email, adress, password } = req.body;
 
         // Vérifier si un client avec le même email existe déjà (gestion de duplication)
         const existingCustomer = await Customer.findOne({ where: { email } });
@@ -30,7 +30,6 @@ export async function customerRegister(req: Request, res: Response) {
         const customer = await Customer.create({
             first_name,
             last_name,
-            phone,
             adress,
             email,
             hashedpassword: await hashPassword(password), // Hashage du mot de passe
@@ -61,7 +60,7 @@ export async function customerLogin(req: Request, res: Response) {
             res.status(404).json({ message: "Customer non trouvé" });
             return;
         }
-
+        console.log('customer.hashedpassword:', customer.hashedpassword);
         const isPasswordValid = await verifyPassword(password, customer.hashedpassword);
         if (!isPasswordValid) {
             res.status(401).json({ message: "Mot de passe incorrect" });
@@ -75,7 +74,7 @@ export async function customerLogin(req: Request, res: Response) {
         });
 
         res.cookie("jwt", token, { httpOnly: true, sameSite: "strict" });
-        res.status(200).json({ message: "Connexion réussie" });
+        res.status(200).json({ message: "Connexion réussie", token });
         return;
     } catch (err: any) {
         res.status(500).json({ message: "Erreur Interne", error: err.message });

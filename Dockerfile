@@ -1,5 +1,5 @@
 # Utiliser une image de base
-FROM node:18
+FROM node:18-slim
 # Définir le répertoire de travail
 WORKDIR /app
 # Copier les fichiers package.json et package-lock.json dans le conteneur
