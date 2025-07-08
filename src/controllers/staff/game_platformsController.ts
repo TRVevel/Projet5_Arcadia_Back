@@ -16,35 +16,51 @@ export async function getAllGamesPlatforms(req: Request, res: Response) {
 
 
 export async function getGamePlatformDetails(req: Request, res: Response) {
-    const { id } = req.params; // ID du game_platform à récupérer
+    const { id } = req.params;
+    console.log("Valeur reçue pour id :", id, "Type :", typeof id);
+
+    if (!id || isNaN(Number(id))) {
+        console.log("ID invalide détecté :", id);
+        res.status(400).json({ message: "Paramètre 'id' manquant ou invalide" });
+        return;
+    }
 
     try {
-        // Récupérer la game_platform en utilisant l'ID
         const gamePlatform = await GamePlatform.findOne({
-            where: { id },
-            attributes: ['game_id', 'platform_id', 'compatible_device']  // On récupère uniquement les IDs du jeu et de la plateforme
+            where: { id: Number(id) },
+            attributes: ['game_id', 'platform_id', 'compatible_device']
         });
-
+console.log("Recherche gamePlatform id:", id);
+// Après chaque findOne :
+if (!gamePlatform) console.log("gamePlatform non trouvé");
         // Vérifier si la game_platform existe
         if (!gamePlatform) {
             res.status(404).json({ message: "GamePlatform introuvable" });
             return;
         }
 
-        const { game_id, platform_id } = gamePlatform;
+        const game_id = gamePlatform.getDataValue('game_id');
+        const platform_id = gamePlatform.getDataValue('platform_id');
 
         // Rechercher les détails du jeu à partir du game_id
         const game = await Game.findOne({
             where: { id: game_id },
             attributes: ['id', 'title', 'description', 'developer', 'publisher', 'genre', 'sub_genres', 'pegi', 'sensitive_content', 'status']
         });
-
+        console.log("2Recherche gamePlatform id:", id);
+// Après chaque findOne :
+if (!gamePlatform) console.log("2gamePlatform non trouvé");
+if (!game) console.log("2game non trouvé pour game_id:", game_id);
         // Rechercher les détails de la plateforme à partir du platform_id
         const platform = await Platform.findOne({
             where: { id: platform_id },
             attributes: ['id', 'name']
         });
-
+        console.log("3Recherche gamePlatform id:", id);
+// Après chaque findOne :
+if (!gamePlatform) console.log("3gamePlatform non trouvé");
+if (!game) console.log("3game non trouvé pour game_id:", game_id);
+if (!platform) console.log("3platform non trouvée pour platform_id:", platform_id);
         // Vérifier si le jeu ou la plateforme n'ont pas été trouvés
         if (!game || !platform) {
             res.status(404).json({ message: "Jeu ou Plateforme introuvable" });
@@ -60,8 +76,12 @@ export async function getGamePlatformDetails(req: Request, res: Response) {
         return;
 
     } catch (error: any) {
-        console.error("Erreur lors de la récupération des détails du GamePlatform : ", error);
-        res.status(500).json({ message: "Erreur lors de la récupération des détails du GamePlatform" });
+        console.error("Erreur lors de la récupération des détails du GamePlatform :", error);
+        res.status(500).json({ 
+            message: "Erreur lors de la récupération des détails du GamePlatform",
+            error: error.message, // Ajoute ce détail pour voir l'erreur réelle côté client
+            stack: error.stack    // (optionnel) pour le debug
+        });
     }
 }
 

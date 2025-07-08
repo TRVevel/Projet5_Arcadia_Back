@@ -60,8 +60,7 @@ export async function customerLogin(req: Request, res: Response) {
             res.status(404).json({ message: "Customer non trouvé" });
             return;
         }
-        console.log('customer.hashedpassword:', customer.hashedpassword);
-        const isPasswordValid = await verifyPassword(password, customer.hashedpassword);
+        const isPasswordValid = await verifyPassword(password, customer.getDataValue('hashedpassword'));
         if (!isPasswordValid) {
             res.status(401).json({ message: "Mot de passe incorrect" });
             return;

@@ -69,7 +69,7 @@ export async function createOrder(req: Request, res: Response) {
             gameInfo.stock -= quantity;
             gameInfoToUpdate.push(gameInfo);
         }
-        const customer= await Customer.findByPk(customer_id, { attributes: ['adress'] });
+        const customer= await Customer.findByPk(customer_id , { attributes: ['adress'] });
         if (!customer) {
             res.status(404).json({ message: "Adresse introuvable" });
             return;
@@ -101,11 +101,14 @@ export async function createOrder(req: Request, res: Response) {
 
         const customerTable = await Customer.findByPk(customer_id);
       
-      if (!customerTable) {
+        if (!customerTable) {
         res.status(404).send("Customer pas trouver");
         return;
-      }
-      customerTable.order_history.push(newOrder.id as number);
+        }
+        if (!customerTable.order_history) {
+        customerTable.order_history = [];
+        }
+        customerTable.order_history.push(newOrder.id as number);
         await customerTable.save();
         res.status(201).json({ message: 'Commande créée avec succès', data: newOrder });
         return;

@@ -195,6 +195,11 @@ export async function confirmBasket(req: Request, res: Response) {
         res.status(404).send("Customer pas trouver");
         return;
       }
+
+      // Correction ici :
+      if (!customerTable.order_history) {
+        customerTable.order_history = [];
+      }
       customerTable.order_history.push(newOrder.id as number);
         await customerTable.save();
 
