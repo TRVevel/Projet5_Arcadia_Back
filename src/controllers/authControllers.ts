@@ -66,11 +66,16 @@ export async function customerLogin(req: Request, res: Response) {
             return;
         }
 
-        const token = generateToken({
+        // Ajoute ce log juste avant la génération du token
+        const payload = {
             id: customer.id,
             email: customer.email,
             type: "Customer",
-        });
+            role: "Customer"
+        };
+        console.log("Payload JWT customer :", payload);
+
+        const token = generateToken(payload);
 
         res.cookie("jwt", token, { httpOnly: true, sameSite: "strict" });
         res.status(200).json({ message: "Connexion réussie", token });
@@ -91,7 +96,7 @@ export async function staffRegister(req: Request, res: Response) {
             return;
         }
 
-        const { first_name, surname, email, password } = req.body;
+        const { first_name, last_name, email, password } = req.body;
 
         // Vérifier si l'utilisateur existe déjà dans la base de données
         const existingUser = await User.findOne({ where: { email } });
@@ -103,7 +108,7 @@ export async function staffRegister(req: Request, res: Response) {
         // Création du nouveau utilisateur
         const user = await User.create({
             first_name,
-            surname,
+            last_name,
             email,
             hashedpassword: await hashPassword(password),
         });
@@ -135,7 +140,7 @@ export async function staffLogin(req: Request, res: Response) {
         }
 
         // Vérification du mot de passe
-        const isPasswordValid = await verifyPassword(password, user.hashedpassword);
+        const isPasswordValid = await verifyPassword(password, user.getDataValue('hashedpassword'));
         if (!isPasswordValid) {
             res.status(401).json({ message: "Mot de passe incorrect" });
             return;
@@ -145,8 +150,8 @@ export async function staffLogin(req: Request, res: Response) {
         const token = generateToken({
             id: user.id,
             email: user.email,
-            type: "User",
-            role: user.role, // Ajout du rôle
+            role: user.role,
+            type: "User"
         });
 
         res.cookie("jwt", token, { httpOnly: true, sameSite: "strict" });

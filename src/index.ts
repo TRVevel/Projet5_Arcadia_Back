@@ -14,6 +14,7 @@ import basketRoutes from "./routes/basketRoutes";
 import orderRoutes from "./routes/orderRoutes";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { v2 as cloudinary } from 'cloudinary';
 //Création d'un serveur Express
 const app = express();
 
@@ -31,6 +32,17 @@ app.use(cors({
 app.use(express.json());
 // Connecter à Sequelize
 testConnection().then(() => syncDatabase());
+
+(async function() {
+
+    // Configuration de Cloudinary
+    cloudinary.config({ 
+        cloud_name: 'degh1iotq', 
+        api_key: process.env.CLOUDINARY_PK, 
+        api_secret: process.env.CLOUDINARY_SK 
+    });
+      
+})();
 //Définition des routes
 app.use('/api/auth', authRoutes);
 app.use('/api', staffRoutes);

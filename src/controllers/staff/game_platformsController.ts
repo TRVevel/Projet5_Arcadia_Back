@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { v2 as cloudinary } from "cloudinary";
 import GamePlatform from "../../models/game_platforms.model";
 import Game from "../../models/game.model";
 import Platform from "../../models/platform.model";
@@ -87,29 +88,52 @@ if (!platform) console.log("3platform non trouvée pour platform_id:", platform_
 
 
 export async function addGamePlatform(req: Request, res: Response) {
-    const {game_id, platform_id, compatible_device, release_date, price, stock  } = await req.body;
-    try{
-        if (!game_id || !platform_id || !compatible_device|| compatible_device.length === 0 || !release_date || !price || !stock) {
-            res.status(400).json({ message: 'Tous les champs sont requis' });
-            return;
-        }
-        const newGamePlatorm = await GamePlatform.create({
+    const { game_id, platform_id, compatible_device, release_date, price, image, stock } = req.body;
+
+    // Vérification détaillée des champs manquants
+    const missingFields: string[] = [];
+    if (!game_id) missingFields.push("game_id");
+    if (!platform_id) missingFields.push("platform_id");
+    if (!compatible_device || compatible_device.length === 0) missingFields.push("compatible_device");
+    if (!release_date) missingFields.push("release_date");
+    if (!price) missingFields.push("price");
+    if (!image) missingFields.push("image");
+    if (!stock) missingFields.push("stock");
+
+    if (missingFields.length > 0) {
+        res.status(400).json({ message: `Champs manquants : ${missingFields.join(", ")}` });
+        return;
+    }
+
+    try {
+        // Upload image to Cloudinary
+        const uploadResult = await cloudinary.uploader.upload(image, {
+            folder: "game_platforms",
+            public_id: `${game_id}_${platform_id}_${Date.now()}`
+        });
+
+        // Utilise l'URL sécurisée de Cloudinary pour stocker dans la BDD
+        const imageUrl = uploadResult.secure_url;
+
+        const newGamePlatform = await GamePlatform.create({
             game_id,
             platform_id,
             compatible_device,
-            release_date, // Stocke les données binaires directement
+            release_date,
             price,
+            image: imageUrl,
             stock
         });
-        res.status(201).json({message:'Ajout de la platform au game:', data: newGamePlatorm});
 
-    }catch(error:any){
-        if(error.code===11000){
-            res.status(400).json({message: 'Cette platform est déjà inscrite dans ce game!'});
-            return 
+        res.status(201).json({ message: 'Ajout de la platform au game:', data: newGamePlatform });
+
+    } catch (error: any) {
+        if (error.code === 11000) {
+            res.status(400).json({ message: 'Cette platform est déjà inscrite dans ce game!' });
+            return;
         }
         console.error("Erreur lors de l'ajout de la platform au game : ", error);
-        res.status(500).json({ message: "Erreur lors de la l'ajout de la platform au game "});
+        res.status(500).json({ message: "Erreur lors de la l'ajout de la platform au game ", error: error.message });
     }
 }
 

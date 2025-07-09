@@ -36,7 +36,7 @@ export const customerLoginValidationSchema = Joi.object({
         'string.email': '"email" doit être une adresse email valide.',
     }),
     password: Joi.string().min(2).required().messages({
-        'string.min': '"password" doit comporter au moins 8 caractères.',
+        'string.min': '"password" doit comporter au moins 2 caractères.',
     })
 });
 
@@ -66,7 +66,7 @@ export const staffLoginValidationSchema = Joi.object({
     email: Joi.string().email().required().messages({
         'string.email': '"email" doit être une adresse email valide.',
     }),
-    password: Joi.string().min(8).required().messages({
+    password: Joi.string().min(2).required().messages({
         'string.min': '"password" doit comporter au moins 8 caractères.',
     })
 });

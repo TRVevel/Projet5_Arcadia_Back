@@ -5,7 +5,7 @@ import sequelize from "../config/database";
 interface UserAttributes {
     id?: number;
     first_name: string;
-    surname: string;
+    last_name: string;
     email: string;
     role?: 'Admin' | 'Storekeeper' | 'Employee';
     hashedpassword: string;
@@ -16,7 +16,7 @@ interface UserAttributes {
 class User extends Model<UserAttributes> implements UserAttributes {
     public id!: number;
     public first_name!: string;
-    public surname!: string;
+    public last_name!: string;
     public email!: string;
     public role!: 'Admin' | 'Storekeeper' | 'Employee';
     public hashedpassword!: string;
@@ -35,7 +35,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        surname: {
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
