@@ -162,3 +162,8 @@ export async function staffLogin(req: Request, res: Response) {
         return;
     }
 }
+
+export function logout(req: Request, res: Response) {
+    res.clearCookie("jwt", { httpOnly: true, sameSite: "strict" });
+    res.status(200).json({ message: "Déconnexion réussie" });
+}

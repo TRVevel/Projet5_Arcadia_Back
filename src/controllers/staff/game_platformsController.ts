@@ -29,7 +29,7 @@ export async function getGamePlatformDetails(req: Request, res: Response) {
     try {
         const gamePlatform = await GamePlatform.findOne({
             where: { id: Number(id) },
-            attributes: ['game_id', 'platform_id', 'compatible_device']
+            attributes: ['game_id', 'platform_id', 'compatible_device', 'release_date', 'price', 'image', 'stock', 'status']
         });
 console.log("Recherche gamePlatform id:", id);
 // Après chaque findOne :
