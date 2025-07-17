@@ -16,15 +16,8 @@ export function verifyTokenMiddleware(req: Request, res: Response, next: NextFun
         throw new Error('SECRET KEY is not defined');
     }
 
-    console.log("Cookies reçus :", req.headers.cookie);
-
-    const cookie = req.headers.cookie;
-    if (!cookie) {
-        res.status(401).json({ message: 'Vous devez être connecté pour accéder à cette ressource' });
-        return;
-    }
-
-    const token = cookie.split('=')[1];
+    // Utilise cookie-parser pour lire le cookie JWT
+    const token = req.cookies?.jwt || req.cookies?.token;
     console.log("Token extrait :", token);
 
     if (!token) {

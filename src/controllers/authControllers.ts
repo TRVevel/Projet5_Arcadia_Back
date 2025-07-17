@@ -12,18 +12,23 @@ export async function customerRegister(req: Request, res: Response) {
         const { error } = customerValidationSchema.validate(req.body);
         
         if (error) {
-            // Si la validation échoue, on retourne les erreurs
-           res.status(400).json({ message: 'Erreur de validation', details: error.details });
-           return ;
+            res.status(400).json({ message: 'Erreur de validation', details: error.details });
+            return;
         }
 
         const { first_name, last_name, email, adress, password } = req.body;
+
+        // Interdire les emails @arcadia
+        if (email && email.toLowerCase().includes('@arcadia')) {
+            res.status(400).json({ message: "Les emails @arcadia ne sont pas autorisés pour les clients." });
+            return;
+        }
 
         // Vérifier si un client avec le même email existe déjà (gestion de duplication)
         const existingCustomer = await Customer.findOne({ where: { email } });
         if (existingCustomer) {
             res.status(400).json({ message: 'Ce customer existe déjà !' });
-            return ;
+            return;
         }
 
         // Création du client dans la base de données
@@ -32,13 +37,11 @@ export async function customerRegister(req: Request, res: Response) {
             last_name,
             adress,
             email,
-            hashedpassword: await hashPassword(password), // Hashage du mot de passe
+            hashedpassword: await hashPassword(password),
         });
 
-        // Réponse avec le client créé
         res.status(201).json(customer);
     } catch (err: any) {
-        // Gestion des erreurs internes
         console.error("Erreur lors de la création du client:", err);
         res.status(500).json({ message: 'Erreur interne', error: err.message });
     }
@@ -55,6 +58,12 @@ export async function customerLogin(req: Request, res: Response) {
 
         const { email, password } = req.body;
 
+        // Interdire les emails @arcadia
+        if (email && email.toLowerCase().includes('@arcadia')) {
+            res.status(400).json({ message: "Les emails @arcadia ne sont pas autorisés pour les clients." });
+            return;
+        }
+
         const customer = await Customer.findOne({ where: { email } });
         if (!customer) {
             res.status(404).json({ message: "Customer non trouvé" });
@@ -66,7 +75,6 @@ export async function customerLogin(req: Request, res: Response) {
             return;
         }
 
-        // Ajoute ce log juste avant la génération du token
         const payload = {
             id: customer.id,
             email: customer.email,
@@ -147,12 +155,15 @@ export async function staffLogin(req: Request, res: Response) {
         }
 
         // Création du jeton JWT pour la connexion
-        const token = generateToken({
+        const payload = {
             id: user.id,
             email: user.email,
             role: user.role,
             type: "User"
-        });
+        };
+        console.log("Payload JWT staff :", payload);
+
+        const token = generateToken(payload);
 
         res.cookie("jwt", token, { httpOnly: true, sameSite: "strict" });
         res.status(200).json({ message: "Connexion réussie", token });

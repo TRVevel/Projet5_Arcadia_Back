@@ -6,7 +6,7 @@ interface CustomerAttributes {
 id?: number;
 first_name: string;
 last_name: string;
-age?: number;
+birthdate?: Date; // Remplace age par birthdate
 email: string;
 phone?: string;
 adress: string;
@@ -20,7 +20,7 @@ class Customer extends Model<CustomerAttributes> implements CustomerAttributes {
 public id!: number;
 public first_name!: string;
 public last_name!: string;
-public age?: number;
+public birthdate?: Date; // Remplace age par birthdate
 public email!: string;
 public phone!: string;
 public adress!: string;
@@ -45,8 +45,8 @@ last_name: {
 type: DataTypes.STRING,
 allowNull: false,
 },
-age: {
-type: DataTypes.INTEGER,
+birthdate: { // Remplace age par birthdate
+type: DataTypes.DATEONLY,
 allowNull: true,
 },
 email: {
