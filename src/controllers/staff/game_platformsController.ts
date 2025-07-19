@@ -18,10 +18,8 @@ export async function getAllGamesPlatforms(req: Request, res: Response) {
 
 export async function getGamePlatformDetails(req: Request, res: Response) {
     const { id } = req.params;
-    console.log("Valeur reçue pour id :", id, "Type :", typeof id);
 
     if (!id || isNaN(Number(id))) {
-        console.log("ID invalide détecté :", id);
         res.status(400).json({ message: "Paramètre 'id' manquant ou invalide" });
         return;
     }
@@ -31,9 +29,7 @@ export async function getGamePlatformDetails(req: Request, res: Response) {
             where: { id: Number(id) },
             attributes: ['game_id', 'platform_id', 'compatible_device', 'release_date', 'price', 'image', 'stock', 'status']
         });
-console.log("Recherche gamePlatform id:", id);
-// Après chaque findOne :
-if (!gamePlatform) console.log("gamePlatform non trouvé");
+
         // Vérifier si la game_platform existe
         if (!gamePlatform) {
             res.status(404).json({ message: "GamePlatform introuvable" });
@@ -48,20 +44,13 @@ if (!gamePlatform) console.log("gamePlatform non trouvé");
             where: { id: game_id },
             attributes: ['id', 'title', 'description', 'developer', 'publisher', 'genre', 'sub_genres', 'pegi', 'sensitive_content', 'status']
         });
-        console.log("2Recherche gamePlatform id:", id);
-// Après chaque findOne :
-if (!gamePlatform) console.log("2gamePlatform non trouvé");
-if (!game) console.log("2game non trouvé pour game_id:", game_id);
+
         // Rechercher les détails de la plateforme à partir du platform_id
         const platform = await Platform.findOne({
             where: { id: platform_id },
             attributes: ['id', 'name']
         });
-        console.log("3Recherche gamePlatform id:", id);
-// Après chaque findOne :
-if (!gamePlatform) console.log("3gamePlatform non trouvé");
-if (!game) console.log("3game non trouvé pour game_id:", game_id);
-if (!platform) console.log("3platform non trouvée pour platform_id:", platform_id);
+
         // Vérifier si le jeu ou la plateforme n'ont pas été trouvés
         if (!game || !platform) {
             res.status(404).json({ message: "Jeu ou Plateforme introuvable" });
@@ -69,7 +58,7 @@ if (!platform) console.log("3platform non trouvée pour platform_id:", platform_
         }
 
         // Répondre avec les informations du jeu, de la plateforme et de la game_platform
-       res.status(200).json({
+        res.status(200).json({
             game_platform: gamePlatform,
             game: game,  // Détails du jeu
             platform: platform  // Détails de la plateforme

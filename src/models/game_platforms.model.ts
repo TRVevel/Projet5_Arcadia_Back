@@ -99,5 +99,7 @@ GamePlatform.init(
 // Définir les relations Many-to-Many
 Game.belongsToMany(Platform, { through: { model: GamePlatform, unique: false }, foreignKey: "game_id" });
 Platform.belongsToMany(Game, { through: { model: GamePlatform, unique: false }, foreignKey: "platform_id" });
+GamePlatform.belongsTo(Game, { foreignKey: "game_id" });
+GamePlatform.belongsTo(Platform, { foreignKey: "platform_id" });
 
 export default GamePlatform;

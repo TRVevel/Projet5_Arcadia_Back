@@ -12,6 +12,10 @@ interface OrderAttributes {
     adress?: string;
     total_price?: number;
     status?: "pending" | "shipped" | "delivered" | "cancelled";
+    card_name?: string;
+    card_number?: string;
+    card_expiry?: string;
+    card_cvc?: string;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -22,6 +26,10 @@ class Order extends Model<OrderAttributes> implements OrderAttributes {
     public adress!: string;
     public total_price!: number;
     public status!: "pending" | "shipped" | "delivered" | "cancelled";
+    public card_name?: string;
+    public card_number?: string;
+    public card_expiry?: string;
+    public card_cvc?: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -60,7 +68,23 @@ Order.init(
             validate:{
                 isIn: [["pending", "shipped", "delivered", "cancelled"]]
             }
-        }
+        },
+        card_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        card_number: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        card_expiry: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        card_cvc: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     
     },
     {

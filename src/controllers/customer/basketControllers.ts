@@ -5,24 +5,50 @@ import sequelize from '../../config/database';
 import Order from '../../models/order.model';
 import OrderGamePlatform from '../../models/order_game_platform.model';
 import Customer from '../../models/customer.model';
+import Game from '../../models/game.model';
+import Platform from '../../models/platform.model';
 
 
 export async function getCustomerBaskets(req: Request, res: Response) {
     const customer_id = req.user?.id;
-    try{
-
+    try {
+        // Récupérer tous les paniers du client
         const baskets = await Basket.findAll({ where: { customer_id } });
 
         if (baskets.length === 0) {
-            res.status(404).json({ message: "Aucune commande trouvée pour ce client" });
+            res.status(404).json({ message: "Aucun panier trouvé pour ce client" });
             return;
         }
 
-        res.status(200).json(baskets);
+        // Pour chaque panier, récupérer les infos associées dans GamePlatform + Game + Platform
+        const basketsWithDetails = await Promise.all(
+            baskets.map(async (basket) => {
+                const gamePlatform = await GamePlatform.findOne({
+                    where: { id: basket.game_platform_id },
+                    attributes: ["id", "game_id", "platform_id", "price", "compatible_device", "release_date"],
+                    include: [
+                        {
+                            model: Game,
+                            attributes: ["id", "title", "description"]
+                        },
+                        {
+                            model: Platform,
+                            attributes: ["id", "name"]
+                        }
+                    ]
+                });
+                return {
+                    ...basket.toJSON(),
+                    gamePlatform
+                };
+            })
+        );
+
+        res.status(200).json(basketsWithDetails);
         return;
     } catch (err: any) {
-        console.error("Erreur lors de la récupération des commandes :", err);
-        res.status(500).json({ message: "Erreur lors de la récupération des commandes" });
+        console.error("Erreur lors de la récupération des paniers :", err);
+        res.status(500).json({ message: "Erreur lors de la récupération des paniers" });
         return;
     }
 }
@@ -119,6 +145,7 @@ export async function deleteBasket(req: Request, res: Response) {
 export async function confirmBasket(req: Request, res: Response) {
     // Récupérer l'ID du client depuis le token
     const customer_id = req.user?.id;
+    const {card_name, card_number, card_expiry, card_cvc} = req.body;
 
     if (!customer_id) {
         res.status(401).json({ message: "Utilisateur non authentifié" });
@@ -164,7 +191,7 @@ export async function confirmBasket(req: Request, res: Response) {
         }
         // Création de la commande dans une transaction
         const newOrder = await sequelize.transaction(async (t) => {
-            const order = await Order.create({ customer_id, adress:customer.adress, total_price: totalPrice }, { transaction: t });
+            const order = await Order.create({ customer_id, adress:customer.adress, total_price: totalPrice, card_name:card_name, card_number: card_number, card_expiry: card_expiry, card_cvc:card_cvc }, { transaction: t });
 
             // Associer chaque produit à la commande
             await Promise.all(
@@ -191,16 +218,16 @@ export async function confirmBasket(req: Request, res: Response) {
         
         const customerTable = await Customer.findByPk(customer_id);
       
-      if (!customerTable) {
-        res.status(404).send("Customer pas trouver");
-        return;
-      }
+        if (!customerTable) {
+            res.status(404).send("Customer pas trouver");
+            return;
+        }
 
-      // Correction ici :
-      if (!customerTable.order_history) {
-        customerTable.order_history = [];
-      }
-      customerTable.order_history.push(newOrder.id as number);
+        // Correction ici : utiliser une nouvelle référence pour forcer la modification
+        if (!Array.isArray(customerTable.order_history)) {
+            customerTable.order_history = [];
+        }
+        customerTable.order_history = [...customerTable.order_history, newOrder.id as number];
         await customerTable.save();
 
         res.status(201).json({ message: "Commande confirmée avec succès", data: newOrder });

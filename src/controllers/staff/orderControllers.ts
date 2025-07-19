@@ -105,11 +105,15 @@ export async function createOrder(req: Request, res: Response) {
         res.status(404).send("Customer pas trouver");
         return;
         }
-        if (!customerTable.order_history) {
-        customerTable.order_history = [];
+        if (!Array.isArray(customerTable.order_history)) {
+            customerTable.order_history = [];
         }
         customerTable.order_history.push(newOrder.id as number);
-        await customerTable.save();
+        try {
+            await customerTable.save();
+        } catch (e) {
+            console.error("Erreur lors de la sauvegarde de l'historique client :", e);
+        }
         res.status(201).json({ message: 'Commande créée avec succès', data: newOrder });
         return;
     } catch (error: any) {
@@ -146,7 +150,7 @@ export const modifyOrderStatus = async (req: Request, res: Response): Promise<vo
         
         await order.save();
   
-        res.status(201).json({ message: 'Commande annulée avec succès', data: order });
+        res.status(201).json({ message: "La commande est passer a l'étape suivant aevc succés", data: order });
       } catch (err) {
         res.status(500).send("Une erreur est survenue lors de la modification de la commande");
       }
