@@ -85,7 +85,11 @@ export async function customerLogin(req: Request, res: Response) {
 
         const token = generateToken(payload);
 
-        res.cookie("jwt", token, { httpOnly: true, sameSite: "strict" });
+        res.cookie("jwt", token, {
+            httpOnly: true,
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            secure: process.env.NODE_ENV === "production"
+            });
         res.status(200).json({ message: "Connexion réussie", token });
         return;
     } catch (err: any) {

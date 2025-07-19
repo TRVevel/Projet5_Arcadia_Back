@@ -22,10 +22,10 @@ app.use(cookieParser());
 
 dotenv.config();
 //Définition du port du serveur
-const PORT = 3000;
 console.log("Lancement du serveur D'Arcadia")
 app.use(cors({
-    origin: 'http://localhost:4200',
+    origin: process.env.CIENT_URL || 'http://localhost:4200', // URL de votre client Angular
+    methods: 'GET,POST,DELETE,PUT', // Restreindre les méthodes autorisées
     credentials: true // si tu utilises des cookies ou des headers auth
 }));
 //Config du serveur par défaut
@@ -55,6 +55,6 @@ app.use('/api', orderRoutes);
 //app.listen indique au serveur d'écouter les requêtes HTTP arrivant sur le
 //port indiqué
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.listen(PORT, () => {
-console.log(`Le serveur est lancé ici http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+console.log(`Le serveur est lancé ici http://localhost:${process.env.PORT || 3000}`);
 });

@@ -13,4 +13,4 @@ ENV NODE_ENV=production
 # Copier le reste des fichiers dans le conteneur
 COPY . .
 # Commande à executer au démarrage du conteneur
-CMD ["npm", "start"]
+CMD ["npm","run", "prod"]
