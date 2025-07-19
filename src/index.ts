@@ -24,7 +24,7 @@ dotenv.config();
 //Définition du port du serveur
 console.log("Lancement du serveur D'Arcadia")
 app.use(cors({
-    origin: process.env.CIENT_URL || 'http://localhost:4200', // URL de votre client Angular
+    origin: process.env.CLIENT_URL || 'http://localhost:4200', // URL de votre client Angular
     methods: 'GET,POST,DELETE,PUT', // Restreindre les méthodes autorisées
     credentials: true // si tu utilises des cookies ou des headers auth
 }));
