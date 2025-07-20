@@ -5,7 +5,7 @@ import Customer from '../models/customer.model';
 import User from '../models/staff.model';
 import { customerLoginValidationSchema, customerValidationSchema, staffLoginValidationSchema, staffValidationSchema } from '../JoiValidators/authValidators';
 
-
+// Enregistrement d'un client
 export async function customerRegister(req: Request, res: Response) {
     try {
         // Validation des données d'entrée avec Joi
@@ -47,6 +47,7 @@ export async function customerRegister(req: Request, res: Response) {
     }
 }
 
+// Connexion d'un client
 export async function customerLogin(req: Request, res: Response) {
     try {
         // Validation des données
@@ -98,7 +99,7 @@ export async function customerLogin(req: Request, res: Response) {
     }
 }
 
-
+// Enregistrement d'un membre du staff
 export async function staffRegister(req: Request, res: Response) {
     try {
         // Validation des données d'entrée avec Joi
@@ -133,6 +134,7 @@ export async function staffRegister(req: Request, res: Response) {
     }
 }
 
+// Connexion d'un membre du staff
 export async function staffLogin(req: Request, res: Response) {
     try {
         // Validation des données d'entrée avec Joi
@@ -182,6 +184,7 @@ export async function staffLogin(req: Request, res: Response) {
     }
 }
 
+// Déconnexion
 export function logout(req: Request, res: Response) {
     res.clearCookie("jwt", { httpOnly: true, sameSite: "strict" });
     res.status(200).json({ message: "Déconnexion réussie" });

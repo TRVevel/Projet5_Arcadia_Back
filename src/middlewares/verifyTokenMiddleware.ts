@@ -18,7 +18,6 @@ export function verifyTokenMiddleware(req: Request, res: Response, next: NextFun
 
     // Utilise cookie-parser pour lire le cookie JWT
     const token = req.cookies?.jwt || req.cookies?.token;
-    console.log("Token extrait :", token);
 
     if (!token) {
         res.status(401).json({ message: 'Vous devez être connecté pour accéder à cette ressource' });
@@ -27,7 +26,6 @@ export function verifyTokenMiddleware(req: Request, res: Response, next: NextFun
 
     try {
         const decoded = verifyToken(token) as UserJwtPayload | null;
-        console.log("Token décodé :", decoded);
 
         if (
             !decoded ||

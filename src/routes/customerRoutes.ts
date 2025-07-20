@@ -10,6 +10,8 @@ const router = express.Router();
  *     tags:
  *       - Customer
  *     summary: Récupère le profil du client connecté (via le token)
+ *     security:
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: Profil client récupéré
@@ -27,6 +29,8 @@ router.get("/customer/profil", verifyTokenMiddleware, getCustomerProfil);
  *     tags:
  *       - Customer
  *     summary: Met à jour le numéro de téléphone, l'adresse et la date de naissance du client (mot de passe requis)
+ *     security:
+ *       - cookieAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -37,15 +41,20 @@ router.get("/customer/profil", verifyTokenMiddleware, getCustomerProfil);
  *               phone:
  *                 type: string
  *                 example: "0612345678"
+ *                 default: "0612345678"
  *               adress:
  *                 type: string
  *                 example: "12 rue de Paris, 75000 Paris"
+ *                 default: "12 rue de Paris, 75000 Paris"
  *               birthdate:
  *                 type: string
+ *                 format: date
  *                 example: "1990-01-01"
+ *                 default: "1990-01-01"
  *               password:
  *                 type: string
- *                 example: "monMotDePasse"
+ *                 example: "Password123!"
+ *                 default: "Password123!"
  *             required:
  *               - password
  *     responses:
@@ -58,8 +67,6 @@ router.get("/customer/profil", verifyTokenMiddleware, getCustomerProfil);
  *       404:
  *         description: Client non trouvé
  */
-router.put("/customer/account",verifyTokenMiddleware, updateCustomerAccount);
-
-
+router.put("/customer/account", verifyTokenMiddleware, updateCustomerAccount);
 
 export default router;

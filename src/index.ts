@@ -15,6 +15,8 @@ import orderRoutes from "./routes/orderRoutes";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { v2 as cloudinary } from 'cloudinary';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 //Création d'un serveur Express
 const app = express();
 
@@ -43,6 +45,32 @@ testConnection().then(() => syncDatabase());
     });
       
 })();
+// Middleware de rate limiting
+export const apiLimiter = rateLimit({
+windowMs: 15 * 60 * 1000, // ⏳ temps en millisecondes
+max: 100, // 🔒 Limite à 100 requêtes par IP
+message: "⛔ Trop de requêtes. Réessayez plus tard."
+});
+// Appliquer le rate limiter sur toutes les routes
+app.use(apiLimiter);
+app.use(
+helmet({
+contentSecurityPolicy: {
+directives: {
+defaultSrc: ["'self'"],
+scriptSrc: ["'self'", "'nonce-random123'"],
+styleSrc: ["'self'"], // Supprimer 'strict-dynamic'
+imgSrc: ["'self'"], // Supprimer 'data:'
+objectSrc: ["'none'"],
+baseUri: ["'self'"],
+formAction: ["'self'"],
+frameAncestors: ["'none'"],
+scriptSrcAttr: ["'none'"],
+upgradeInsecureRequests: [],
+},
+},
+})
+)
 //Définition des routes
 app.use('/api/auth', authRoutes);
 app.use('/api', staffRoutes);

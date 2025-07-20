@@ -42,8 +42,10 @@ router.get("/baskets", verifyTokenMiddleware, authorizeRoles("Customer"), getCus
  *             properties:
  *               game_platform_id:
  *                 type: integer
+ *                 default: 1
  *               quantity:
  *                 type: integer
+ *                 default: 1
  *             required:
  *               - game_platform_id
  *               - quantity
@@ -72,6 +74,7 @@ router.post("/baskets", verifyTokenMiddleware, authorizeRoles("Customer"), creat
  *         required: true
  *         schema:
  *           type: integer
+ *           default: 1
  *     requestBody:
  *       required: true
  *       content:
@@ -81,6 +84,7 @@ router.post("/baskets", verifyTokenMiddleware, authorizeRoles("Customer"), creat
  *             properties:
  *               quantity:
  *                 type: integer
+ *                 default: 2
  *             required:
  *               - quantity
  *     responses:
@@ -108,6 +112,7 @@ router.put("/baskets/:id", verifyTokenMiddleware, authorizeRoles("Customer"), mo
  *         required: true
  *         schema:
  *           type: integer
+ *           default: 1
  *     responses:
  *       200:
  *         description: Panier supprimé
@@ -132,13 +137,20 @@ router.delete("/baskets/:id", verifyTokenMiddleware, authorizeRoles("Customer"),
  *           schema:
  *             type: object
  *             properties:
+ *               card_name:
+ *                 type: string
+ *                 default: Jean Dupont
  *               card_number:
  *                 type: string
+ *                 default: "4111111111111111"
  *               card_expiry:
  *                 type: string
+ *                 default: "01/10"
  *               card_cvc:
  *                 type: string
+ *                 default: "123"
  *             required:
+ *               - card_name
  *               - card_number
  *               - card_expiry
  *               - card_cvc
@@ -168,4 +180,5 @@ router.post("/baskets/confirm", verifyTokenMiddleware, authorizeRoles("Customer"
  *         description: Non authentifié
  */
 router.get("/erp/baskets", verifyTokenMiddleware, authorizeRoles("Employee"), getAllBaskets);
+
 export default router;

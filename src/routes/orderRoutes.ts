@@ -39,6 +39,7 @@ router.get("/orders", verifyTokenMiddleware, authorizeRoles("Customer"), getCust
  *         required: true
  *         schema:
  *           type: integer
+ *           default: 1
  *     responses:
  *       200:
  *         description: Commande annulée avec succès
@@ -85,6 +86,7 @@ router.get("/erp/orders", verifyTokenMiddleware, authorizeRoles("Employee"), get
  *         required: true
  *         schema:
  *           type: integer
+ *           default: 1
  *     responses:
  *       200:
  *         description: Liste des commandes du client
@@ -113,18 +115,24 @@ router.get("/erp/orders/:id", verifyTokenMiddleware, authorizeRoles("Employee"),
  *             properties:
  *               customer_id:
  *                 type: integer
- *               items:
+ *                 default: 1
+ *               game_platform_id_list:
  *                 type: array
  *                 items:
  *                   type: object
  *                   properties:
  *                     game_platform_id:
  *                       type: integer
+ *                       default: 1
  *                     quantity:
  *                       type: integer
+ *                       default: 1
+ *                 default:
+ *                   - game_platform_id: 1
+ *                     quantity: 1
  *             required:
  *               - customer_id
- *               - items
+ *               - game_platform_id_list
  *     responses:
  *       201:
  *         description: Commande créée
@@ -150,6 +158,7 @@ router.post("/erp/orders", verifyTokenMiddleware, authorizeRoles("Employee"), cr
  *         required: true
  *         schema:
  *           type: integer
+ *           default: 1
  *     responses:
  *       200:
  *         description: Statut de la commande modifié
@@ -160,5 +169,6 @@ router.post("/erp/orders", verifyTokenMiddleware, authorizeRoles("Employee"), cr
  *       404:
  *         description: Commande non trouvée
  */
-router.put("/erp/orders/:id", verifyTokenMiddleware, authorizeRoles("Employee"), modifyOrderStatus); // Assuming you want to update the order with the same function
+router.put("/erp/orders/:id", verifyTokenMiddleware, authorizeRoles("Employee"), modifyOrderStatus);
+
 export default router;

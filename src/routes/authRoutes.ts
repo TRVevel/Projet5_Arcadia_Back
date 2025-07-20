@@ -19,14 +19,19 @@ const router = express.Router();
  *             properties:
  *               first_name:
  *                 type: string
+ *                 default: Jean
  *               last_name:
  *                 type: string
+ *                 default: Dupont
  *               email:
  *                 type: string
+ *                 default: jean.dupont@email.com
  *               adress:
  *                 type: string
+ *                 default: 10 rue de Paris, 75000 Paris
  *               password:
  *                 type: string
+ *                 default: Password123!
  *             required:
  *               - first_name
  *               - last_name
@@ -57,8 +62,10 @@ router.post("/register", customerRegister);
  *             properties:
  *               email:
  *                 type: string
+ *                 default: jean.dupont@email.com
  *               password:
  *                 type: string
+ *                 default: Password123!
  *             required:
  *               - email
  *               - password
@@ -86,12 +93,16 @@ router.post("/login", customerLogin);
  *             properties:
  *               first_name:
  *                 type: string
+ *                 default: Alice
  *               last_name:
  *                 type: string
+ *                 default: Martin
  *               email:
  *                 type: string
+ *                 default: alice.martin@arcadia.com
  *               password:
  *                 type: string
+ *                 default: StaffPass123!
  *             required:
  *               - first_name
  *               - last_name
@@ -121,8 +132,10 @@ router.post("/erp/register", staffRegister);
  *             properties:
  *               email:
  *                 type: string
+ *                 default: alice.martin@arcadia.com
  *               password:
  *                 type: string
+ *                 default: StaffPass123!
  *             required:
  *               - email
  *               - password

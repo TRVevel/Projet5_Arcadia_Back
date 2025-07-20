@@ -3,39 +3,39 @@ import { validateSchema } from "../../utils/joiUtils";
 import Game from "../../models/game.model";
 import { gameSchema } from "../../JoiValidators/gamesValidators";
 import GamePlatform from "../../models/game_platforms.model";
-import Basket from "../../models/basket.model"; // Si tu as un modèle Basket
-import OrderGamePlatform from "../../models/order_game_platform.model"; // Association Order/GamePlatform
+import Basket from "../../models/basket.model";
+import OrderGamePlatform from "../../models/order_game_platform.model";
 import { Op } from "sequelize";
+
+// Récupérer tous les jeux
 export async function getAllGames(req: Request, res: Response) {
     try {
         const games = await Game.findAll();
         res.status(200).json(games);
     } catch (err: any) {
-        console.error('Erreur lors de la récupération des games : ', err)
-        res.status(500).json({ message: 'Erreur lors de la récupération des games' })
-        
+        res.status(500).json({ message: 'Erreur lors de la récupération des games' });
     }
 }
 
+// Ajouter un jeu
 export async function addGame(req: Request, res: Response) {
+    // Validation et extraction des champs
     const { title, description, developer, publisher, genre, sub_genres, pegi, sensitive_content } = validateSchema(req.body, gameSchema);
+
+    // Vérification des champs requis
+    if (!title || !description || !developer || !publisher || !genre || !sub_genres || !pegi || !sensitive_content) {
+        res.status(400).json({ message: 'Tous les champs sont requis' });
+        return;
+    }
+
+    // Validation des données avec Joi
+    const { error } = gameSchema.validate(req.body);
+    if (error) {
+        res.status(400).json({ message: "Données invalides", error: error.details });
+        return;
+    }
+
     try {
-        // Vérification des champs requis
-        if (!title || !description || !developer || !publisher || !genre || !sub_genres || !pegi || !sensitive_content) {
-            res.status(400).json({ message: 'Tous les champs sont requis' });
-            return;
-        }
-
-        // Validation des données avec Joi ou toute autre validation
-        const { error } = gameSchema.validate(req.body);
-        if (error) {
-            console.error("Validation échouée :", error.details);
-            res.status(400).json({ message: "Données invalides", error: error.details });
-            return;
-        } else {
-            console.log("Validation réussie !");
-        }
-
         // Création du nouveau jeu
         const newGame = await Game.create({
             title,
@@ -49,28 +49,25 @@ export async function addGame(req: Request, res: Response) {
         });
 
         res.status(201).json({ message: 'Ajout du game avec succès', data: newGame });
-        return;
     } catch (error: any) {
         if (error.code === 11000) {
             res.status(400).json({ message: 'Ce game est déjà ajouté!' });
             return;
         }
-        console.error("Erreur lors de l'ajout du game :", error);
         res.status(500).json({ message: "Erreur lors de l'ajout du game" });
-        return;
     }
 }
 
-
+// Supprimer un jeu
 export async function deleteGame(req: Request, res: Response) {
     const { id } = req.params;
 
-    try {
-        if (!id) {
-            res.status(400).json({ message: "L'ID est requis" });
-            return;
-        }
+    if (!id) {
+        res.status(400).json({ message: "L'ID est requis" });
+        return;
+    }
 
+    try {
         const game = await Game.findByPk(id);
 
         if (!game) {
@@ -83,7 +80,7 @@ export async function deleteGame(req: Request, res: Response) {
             return;
         }
 
-        // 🔍 Récupère toutes les relations game_platform du jeu
+        // Récupère toutes les relations game_platform du jeu
         const gamePlatforms = await GamePlatform.findAll({ where: { game_id: id } });
         const gamePlatformIds = gamePlatforms.map(gp => gp.id);
 
@@ -119,7 +116,6 @@ export async function deleteGame(req: Request, res: Response) {
 
         res.status(200).json({ message: "Game supprimé avec succès" });
     } catch (error: any) {
-        console.error("Erreur lors de la suppression du jeu :", error);
         res.status(500).json({ message: "Erreur serveur lors de la suppression du jeu" });
     }
 }

@@ -33,8 +33,6 @@ export async function getCustomerProfil(req: Request, res: Response) {
             return;
         }
 
-        
-
         // Historique des commandes (tableau d'IDs)
         const order_history = customer.getDataValue("order_history") || [];
 
@@ -81,7 +79,6 @@ const updateCustomerSchema = Joi.object({
  * Met à jour le numéro de téléphone, l'adresse et la date de naissance d'un client après vérification du mot de passe.
  * Le client doit fournir son mot de passe, et au moins un champ à modifier.
  */
-
 export async function updateCustomerAccount(req: Request, res: Response) {
     const customerId = req.user?.id;
 

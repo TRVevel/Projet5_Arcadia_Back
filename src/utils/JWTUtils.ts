@@ -13,7 +13,7 @@ export function generateToken(payload: UserJwtPayload): string {
     if (!SECRET_KEY) {
         throw new Error('JWT_KEY is not defined');
     }
-    return jwt.sign(payload, SECRET_KEY, { expiresIn: '12h' });
+    return jwt.sign(payload, SECRET_KEY, { expiresIn: '4h' });
 }
 
 export function verifyToken(token: string): UserJwtPayload | null {
