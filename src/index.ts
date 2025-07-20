@@ -48,7 +48,7 @@ testConnection().then(() => syncDatabase());
 // Middleware de rate limiting
 export const apiLimiter = rateLimit({
 windowMs: 15 * 60 * 1000, // ⏳ temps en millisecondes
-max: 100, // 🔒 Limite à 100 requêtes par IP
+max: 500, // 🔒 Limite à 100 requêtes par IP
 message: "⛔ Trop de requêtes. Réessayez plus tard."
 });
 // Appliquer le rate limiter sur toutes les routes
