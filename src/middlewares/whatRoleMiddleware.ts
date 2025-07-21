@@ -31,7 +31,10 @@ export function authorizeRoles(...allowedRoles: ("Customer" | "Employee" | "Stor
         }
 
         // Vérifie si l'utilisateur est autorisé en fonction de son rôle ou type
-        if (!allowedRoles.includes(userType === "Customer" ? "Customer" : userRole)) {
+        const isAllowed =
+            (userType === "Customer" && allowedRoles.includes("Customer")) ||
+            (userType === "User" && allowedRoles.includes(userRole));
+        if (!isAllowed) {
             res.status(403).json({ message: "Accès interdit. Rôle insuffisant." });
             return;
         }

@@ -26,9 +26,9 @@ dotenv.config();
 //Définition du port du serveur
 console.log("Lancement du serveur D'Arcadia")
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:4200', // URL de votre client Angular
-    methods: 'GET,POST,DELETE,PUT', // Restreindre les méthodes autorisées
-    credentials: true // si tu utilises des cookies ou des headers auth
+    origin: process.env.CLIENT_URL || 'http://localhost:4200',
+    methods: 'GET,POST,DELETE,PUT', // Définir les méthodes autorisées
+    credentials: true  //Cookie
 }));
 //Config du serveur par défaut
 app.use(express.json());
@@ -43,12 +43,11 @@ testConnection().then(() => syncDatabase());
         api_key: process.env.CLOUDINARY_PK, 
         api_secret: process.env.CLOUDINARY_SK 
     });
-      
 })();
 // Middleware de rate limiting
 export const apiLimiter = rateLimit({
 windowMs: 15 * 60 * 1000, // ⏳ temps en millisecondes
-max: 500, // 🔒 Limite à 100 requêtes par IP
+max: 500, // 🔒 Limite à 500 requêtes par IP
 message: "⛔ Trop de requêtes. Réessayez plus tard."
 });
 // Appliquer le rate limiter sur toutes les routes
