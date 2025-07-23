@@ -53,7 +53,11 @@ export async function createBasket(req: Request, res: Response) {
     const customer_id = req.user?.id;
     const { game_platform_id, quantity } = req.body;
     try {
-        if (!customer_id || !game_platform_id || !quantity) {
+        if (!customer_id ) {
+            res.status(400).json({ message: 'Reconnectez vous svp' });
+            return;
+        }
+        if (!game_platform_id || !quantity) {
             res.status(400).json({ message: 'Tous les champs sont requis' });
             return;
         }
