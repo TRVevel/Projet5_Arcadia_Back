@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { v2 as cloudinary } from "cloudinary";
 import GamePlatform from "../../models/game_platforms.model";
 import Game from "../../models/game.model";
-import Platform from "../../models/platform.model";
 
 // Ajouter une nouvelle relation game_platform
 export async function addGamePlatform(req: Request, res: Response) {

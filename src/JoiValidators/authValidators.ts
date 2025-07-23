@@ -16,11 +16,6 @@ export const customerValidationSchema = Joi.object({
         'string.email': '"email" doit être une adresse email valide.',
         'string.pattern.base': '"email" ne doit pas contenir "@arcadia." pour un client.',
     }),
-    // phone: Joi.string().min(10).max(15).pattern(/^[0-9]+$/).messages({
-    //     'string.pattern.base': '"phone" doit contenir uniquement des chiffres.',
-    //     'string.min': '"phone" doit comporter au moins 10 caractères.',
-    //     'string.max': '"phone" doit comporter au maximum 15 caractères.',
-    // }),
     adress: Joi.string().min(10).max(255).required().messages({
         'string.min': '"adress" doit comporter au moins 10 caractères.',
         'string.max': '"adress" doit comporter au maximum 255 caractères.',
